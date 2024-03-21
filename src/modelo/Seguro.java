@@ -1,6 +1,8 @@
+package modelo;
+
 public class Seguro {
-    private boolean tipo;
-    private double precio;
+    public boolean tipo;
+    public double precio;
 
     // Constructor vacío
     public Seguro() {
@@ -32,7 +34,7 @@ public class Seguro {
     // Método toString para imprimir los detalles del seguro
     @Override
     public String toString() {
-        return "Seguro{" +
+        return "modelo.Seguro{" +
                 "tipo=" + (tipo ? "Completo" : "Básico") +
                 ", precio=" + precio +
                 '}';

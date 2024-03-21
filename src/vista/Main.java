@@ -1,3 +1,10 @@
+package vista;
+
+import modelo.Datos;
+
+import modelo.*;
+
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -28,10 +35,10 @@ public class Main {
                     scanner.nextLine();
                     switch (opcionExcursion) {
                         case 1:
-                            Excursion.addExcursion();
+                            Datos.addExcursion();
                             break;
                         case 2:
-                            Excursion.mostrarExcursionesPorFechas(Excursion.listaExcursiones);
+                            Datos.mostrarExcursionesPorFechas(Datos.listaExcursiones);
                             break;
                         default:
                             break;
@@ -48,16 +55,16 @@ public class Main {
                     scanner.nextLine();
                     switch (opcionSocio) {
                         case 1:
-                            Socio.addSocio();
+                            Datos.addSocio();
                             break;
                         case 2:
                             //Modificar tipo de seguro de socio estandar
                             break;
                         case 3:
-                            Socio.deleteSocio(Socio.listaSocios);
+                            Datos.deleteSocio(Datos.listaSocios);
                             break;
                         case 4:
-                            Socio.showSocio(Socio.listaSocios);
+                            Datos.showSocio(Datos.listaSocios);
                             break;
                         case 5:
                             //Modificar factura mensual
@@ -78,14 +85,14 @@ public class Main {
                     switch (opcionInscripcion) {
                         case 1:
                             Date fechaActual = new Date();
-                            Inscripcion.addInscripcion(Socio.listaSocios, Excursion.listaExcursiones, fechaActual);
+                            Datos.addInscripcion(Datos.listaSocios,Datos.listaExcursiones, fechaActual);
                             break;
                         case 2:
                             //Eliminar Inscripciones
                             break;
                         case 3:
 
-                            Inscripcion.showInscripcion(Inscripcion.listaInscripciones, Socio.listaSocios);
+                            Datos.showInscripcion(Datos.listaInscripciones, Datos.listaSocios);
                             break;
                         default:
                             break;

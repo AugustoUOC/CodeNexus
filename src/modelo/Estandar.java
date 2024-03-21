@@ -1,6 +1,8 @@
+package modelo;
+
 public class Estandar extends Socio {
     private String nif;
-    private Seguro seguroContratado;
+    public Seguro seguroContratado;
 
     // Constructor vacío
     public Estandar() {
@@ -40,7 +42,7 @@ public class Estandar extends Socio {
     // Método toString para imprimir los detalles del socio estándar
     @Override
     public String toString() {
-        return "Estandar{" +
+        return "modelo.Estandar{" +
                 "numeroSocio='" + getIdSocio() + '\'' +
                 ", nombre='" + getNombre() + '\'' +
                 ", tipoSocio='" + getTipoSocio() + '\'' +

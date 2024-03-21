@@ -1,8 +1,9 @@
+package modelo;
+
 public class Federacion {
     private int idFederacion;
     private String nombre;
 
-    private Federacion federacion;
 
     // Constructor vacío
     public Federacion() {
@@ -34,7 +35,7 @@ public class Federacion {
     // Método toString para imprimir los detalles de la federación
     @Override
     public String toString() {
-        return "Federacion{" +
+        return "modelo.Federacion{" +
                 "idFederacion='" + idFederacion + '\'' +
                 ", nombre='" + nombre + '\'' +
                 '}';
