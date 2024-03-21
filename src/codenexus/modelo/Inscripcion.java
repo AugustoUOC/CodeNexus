@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Inscripcion {
     private int idInscripcion;
-    private int idSocio;
+    private Socio socio;
     private String idExcursion;
     private Date fechaInscripcion;
 
@@ -13,9 +13,9 @@ public class Inscripcion {
     }
 
     // Constructor con todos los atributos
-    public Inscripcion(int idInscripcion, int idSocio, String idExcursion, Date fechaInscripcion) {
+    public Inscripcion(int idInscripcion, Socio socio, String idExcursion, Date fechaInscripcion) {
         this.idInscripcion = idInscripcion;
-        this.idSocio = idSocio;
+        this.socio = socio;
         this.idExcursion = idExcursion;
         this.fechaInscripcion = fechaInscripcion;
     }
@@ -29,12 +29,12 @@ public class Inscripcion {
         this.idInscripcion = idInscripcion;
     }
 
-    public int getIdSocio() {
-        return idSocio;
+    public Socio getSocio() {
+        return socio;
     }
 
-    public void setIdSocio(int idSocio) {
-        this.idSocio = idSocio;
+    public void setSocio(Socio socio) {
+        this.socio = socio;
     }
 
     public String getIdExcursion() {
@@ -58,7 +58,7 @@ public class Inscripcion {
     public String toString() {
         return "codenexus.modelo.Inscripcion{" +
                 "idInscripcion=" + idInscripcion +
-                ", idSocio=" + idSocio +
+                ", socio=" + socio +
                 ", idExcursion='" + idExcursion + '\'' +
                 ", fechaInscripcion=" + fechaInscripcion +
                 '}';

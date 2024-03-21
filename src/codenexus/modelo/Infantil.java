@@ -1,7 +1,7 @@
 package codenexus.modelo;
 
 public class Infantil extends Socio {
-    private Socio idTutor;
+    private int idTutor;
     private double descuentoCuota;
 
     // Constructor vacío
@@ -9,18 +9,18 @@ public class Infantil extends Socio {
     }
 
     // Constructor con todos los atributos
-    public Infantil(int idSocio, String nombre, String tipoSocio, Seguro seguroContratado, Federacion federacion, Socio idTutor, double descuentoCuota) {
-        super(idSocio, nombre, tipoSocio, null); // No se requiere NIF para los socios infantiles
-        this.idTutor = idTutor;
+    public Infantil(int idSocio, String nombre, Socio idTutor, double descuentoCuota) {
+        super(idSocio, nombre);
+        this.idTutor = idTutor.getIdSocio();
         this.descuentoCuota = descuentoCuota;
     }
 
     // Getter y setter para el tutor asociado
-    public Socio getIdTutor() {
+    public int getIdTutor() {
         return idTutor;
     }
 
-    public void setIdTutor(Socio idTutor) {
+    public void setIdTutor(int idTutor) {
         this.idTutor = idTutor;
     }
 
@@ -37,11 +37,10 @@ public class Infantil extends Socio {
     @Override
     public String toString() {
         return "codenexus.modelo.Infantil{" +
-                "idSocio=" + getIdSocio() +
+                "idSocio='" + getIdSocio() + '\'' +
                 ", nombre='" + getNombre() + '\'' +
-                ", tipoSocio='" + getTipoSocio() + '\'' +
-                ", idTutor=" + idTutor +
-                ", descuentoCuota=" + descuentoCuota +
+                ",  idTutor='" + idTutor + '\'' +
+                ",   nombreTutor='" + getNombre() + '\'' +
                 '}';
     }
 }

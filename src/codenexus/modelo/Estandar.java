@@ -10,8 +10,8 @@ public class Estandar extends Socio {
     }
 
     // Constructor con todos los atributos
-    public Estandar(int idSocio, String nombre, String tipoSocio, String nif, Seguro seguroContratado) {
-        super(idSocio, nombre, tipoSocio, nif);
+    public Estandar(int idSocio, String nombre, String nif, Seguro seguroContratado) {
+        super(idSocio, nombre);
         this.nif = nif;
         this.seguroContratado = seguroContratado;
     }
@@ -45,7 +45,6 @@ public class Estandar extends Socio {
         return "codenexus.modelo.Estandar{" +
                 "numeroSocio='" + getIdSocio() + '\'' +
                 ", nombre='" + getNombre() + '\'' +
-                ", tipoSocio='" + getTipoSocio() + '\'' +
                 ", seguroContratado=" + seguroContratado +
                 ", nif='" + nif + '\'' +
                 '}';

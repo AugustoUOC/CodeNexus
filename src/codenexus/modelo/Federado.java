@@ -11,8 +11,8 @@ public class Federado extends Socio {
     }
 
     // Constructor con todos los atributos
-    public Federado(int idSocio, String nombre, String tipoSocio, Seguro seguroContratado, Federacion federacion, String nif, double descuentoExcursion, double descuentoCuota) {
-        super(idSocio, nombre, tipoSocio, nif);
+    public Federado(int idSocio, String nombre, String nif, Federacion federacion, double descuentoExcursion, double descuentoCuota) {
+        super(idSocio, nombre);
         this.nif = nif;
         this.federacion = federacion;
         this.descuentoExcursion = descuentoExcursion;
@@ -59,11 +59,10 @@ public class Federado extends Socio {
     @Override
     public String toString() {
         return "codenexus.modelo.Federado{" +
-                "idSocio='" + getIdSocio() + '\'' +
+                "numeroSocio='" + getIdSocio() + '\'' +
                 ", nombre='" + getNombre() + '\'' +
-                ", tipoSocio='" + getTipoSocio() + '\'' +
-                ", federacion=" + federacion +
                 ", nif='" + nif + '\'' +
+                ", federacion=" + federacion +
                 ", descuentoExcursion=" + descuentoExcursion +
                 ", descuentoCuota=" + descuentoCuota +
                 '}';
