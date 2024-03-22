@@ -68,7 +68,14 @@ public class Main {
                             Datos.showSocio(Datos.listaSocios);
                             break;
                         case 5:
-                           // Datos.();
+                            System.out.println("Introducir ID del socio para ver su Factura");
+                            Socio socio = Datos.obtenerSocioPorId(scanner.nextInt());
+                            if (socio == null) {
+                                return;
+                            }
+                            System.out.println("Id del Socio: " + socio.getIdSocio());
+                            System.out.println("Precio: " + Datos.mostrarFactura(socio));
+
                             break;
                         default:
                             break;

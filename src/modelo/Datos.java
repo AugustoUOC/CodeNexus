@@ -285,12 +285,20 @@ public class Datos {
     // Funcion para la logica de calcular la cuota + el coste de las inscripciones
 
     public static double calcularCosteExcursion(Socio socio, Excursion excursion) {
+        double precio = 0;
 
+        if (socio instanceof Estandar) {
+            precio = calcularCuota(socio) + excursion.getPrecioInscripcion() + ((Estandar) socio).getSeguroContratado().getPrecio();
 
+        } else if (socio instanceof Federado) {
+            double precioTemporal = calcularCuota(socio) + excursion.getPrecioInscripcion();
+            precio = precioTemporal * 0.9;
 
+        } else if (socio instanceof Infantil) {
+            precio = calcularCuota(socio) + excursion.getPrecioInscripcion();
+        }
 
-
-        return 0;
+        return precio;
     }
 
     public static double calcularCuota(Socio socio) {
@@ -524,7 +532,7 @@ public class Datos {
 
         return precioInscripcion;
     }
-    private static Socio obtenerSocioPorId(int idSocio) {
+    public static Socio obtenerSocioPorId(int idSocio) {
         for (Socio socio : listaSocios) {
             if (socio.getIdSocio() == idSocio) {
                 return socio;
