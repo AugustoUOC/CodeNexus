@@ -68,7 +68,7 @@ public class Main {
                             Datos.showSocio(Datos.listaSocios);
                             break;
                         case 5:
-                            //Modificar factura mensual
+                           // Datos.();
                             break;
                         default:
                             break;
@@ -89,11 +89,10 @@ public class Main {
                             Datos.addInscripcion(Datos.listaSocios,Datos.listaExcursiones, fechaActual);
                             break;
                         case 2:
-                            //Eliminar Inscripciones
+                            Datos.eliminarInscripcion();
                             break;
                         case 3:
-
-                            Datos.showInscripcion(Datos.listaInscripciones, Datos.listaSocios);
+                            Datos.showInscripcion();
                             break;
                         default:
                             break;

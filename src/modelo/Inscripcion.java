@@ -9,7 +9,7 @@ public class Inscripcion {
     private int idInscripcion;
     private int idSocio;
     private int idExcursion;
-    private Date fechaInscripcion;
+    public Date fechaInscripcion;
 
 
 
@@ -69,7 +69,7 @@ public class Inscripcion {
                 '}';
     }
 
-    // Métodos adicionales
+
 
 }
 

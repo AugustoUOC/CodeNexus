@@ -82,6 +82,6 @@ public class Excursion {
                 '}';
     }
 
-    // Métodos adicionales
+
 
 }

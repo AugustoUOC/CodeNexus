@@ -12,7 +12,7 @@ public class Infantil extends Socio {
 
     // Constructor con todos los atributos
     public Infantil(int idSocio, String nombre, int idTutor) {
-        super(idSocio, nombre, "modelo.Infantil");
+        super(idSocio, nombre, "Infantil");
         this.idTutor = idTutor;
         this.descuentoCuota = descuentoCuota;
     }

@@ -8,16 +8,9 @@ public abstract class Socio {
     private int idSocio;
     private String nombre;
     public String tipoSocio;
-
-
-
-
-
-   
     // Constructor vacío
     public Socio() {
     }
-
     // Constructor con todos los atributos
     public Socio(int idSocio, String nombre, String tipoSocio) {
         this.idSocio = idSocio;
@@ -28,7 +21,6 @@ public abstract class Socio {
         this.idSocio = idSocio;
         this.nombre = nombre;
     }
-
     // Getters y setters
     public int getIdSocio() {
         return idSocio;
@@ -53,10 +45,6 @@ public abstract class Socio {
     public void setTipoSocio(String tipoSocio) {
         this.tipoSocio = tipoSocio;
     }
-
-
-    // Otros métodos
-
 
     // Método toString para imprimir los detalles del socio
     @Override
