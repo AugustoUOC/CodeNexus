@@ -61,7 +61,7 @@ public class Inscripcion {
     // Método toString para imprimir los detalles de la inscripción
     @Override
     public String toString() {
-        return "modelo.Inscripcion{" +
+        return "Inscripcion{" +
                 "idInscripcion=" + idInscripcion +
                 ", idSocio=" + idSocio +
                 ", idExcursion='" + idExcursion + '\'' +

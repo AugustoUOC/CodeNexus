@@ -42,7 +42,7 @@ public class Estandar extends Socio {
     // Método toString para imprimir los detalles del socio estándar
     @Override
     public String toString() {
-        return "modelo.Estandar{" +
+        return "Estandar{" +
                 "numeroSocio='" + getIdSocio() + '\'' +
                 ", nombre='" + getNombre() + '\'' +
                 ", tipoSocio='" + getTipoSocio() + '\'' +

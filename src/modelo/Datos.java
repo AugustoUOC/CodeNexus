@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class Datos {
 
@@ -52,7 +55,7 @@ public class Datos {
         listaExcursiones.add(excursion);
         System.out.println("Excursión agregada correctamente: " + excursion);
     }
-    public static void mostrarExcursionesPorFechas(List<Excursion> listaExcursiones) {
+    public static void mostrarExcursionesPorFechas() {
         Scanner scanner = new Scanner(System.in);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -137,7 +140,7 @@ public class Datos {
         System.out.println("Ingrese el nombre del socio:");
         String nombre = scanner.nextLine();
 
-        System.out.println("Seleccione el tipo de socio (modelo.Estandar / modelo.Federado / modelo.Infantil):");
+        System.out.println("Seleccione el tipo de socio (Estandar / Federado / Infantil):");
         String tipoSocio = scanner.nextLine();
 
         switch (tipoSocio.toLowerCase()) {
@@ -206,7 +209,7 @@ public class Datos {
                     if (respuesta.equalsIgnoreCase("s")) {
                         // Crea el socio infantil con el tutor encontrado
                         nuevoSocio = new Infantil(++contadorSocios, nombre, idTutor);
-                        System.out.println("modelo.Socio infantil agregado correctamente.");
+                        System.out.println("Socio infantil agregado correctamente.");
                     } else {
                         System.out.println("Se ha cancelado la operación. El socio infantil no se pudo agregar.");
                     }
@@ -218,7 +221,16 @@ public class Datos {
         }
 
         listaSocios.add(nuevoSocio);
-        System.out.println("modelo.Socio agregado correctamente.");
+        System.out.println("Socio agregado correctamente.");
+    }
+
+    //Funcion para Modificar el seguro del Socio estandar
+
+    public static void modificarSeguro(Seguro seguro) {
+        //buscar el socio Estandar  al cual quieres modificar el seguro
+        //una vez encontrado el socio quiero saber que tipo de seguro tiene
+        //cuando sepa el tipo de seguro quiero obtener una opcion para si quiero cambiarlo
+
     }
     public static void showSocio(List<Socio> socios) {
         Scanner scanner = new Scanner(System.in);
@@ -240,8 +252,8 @@ public class Datos {
             case 2:
                 System.out.println("¿Qué tipo de socio deseas mostrar?");
                 System.out.println("1. Estándar");
-                System.out.println("2. modelo.Federado");
-                System.out.println("3. modelo.Infantil");
+                System.out.println("2. Federado");
+                System.out.println("3. Infantil");
                 int tipoSocio = scanner.nextInt();
                 scanner.nextLine(); // Consumir el salto de línea
                 System.out.println("Lista de socios de tipo " + tipoSocio + ":");
@@ -260,16 +272,16 @@ public class Datos {
                 System.out.println("Opción no válida.");
         }
     }
+
+    //Funcion para mostrar el Importe total de la Factura segun el Socio y las excursiones que tiene asignadas
     public static double mostrarFactura(Socio socio) {
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
-
         for(Inscripcion inscripcion : listaInscripciones) {
             if (inscripcion.getIdSocio() == socio.getIdSocio()) {
                 inscripciones.add(inscripcion);
             }
         }
         double coste = 0;
-
         for (Inscripcion inscripcion : inscripciones) {
             for (Excursion excursion : listaExcursiones) {
                 if (inscripcion.getIdExcursion() == excursion.getIdExcursion()) {
@@ -277,34 +289,27 @@ public class Datos {
                 }
             }
         }
-
         return coste;
     }
 
 
-    // Funcion para la logica de calcular la cuota + el coste de las inscripciones
-
+    // Funcion para la logica de calcular la cuota + el coste de las inscripciones segun el Socio
     public static double calcularCosteExcursion(Socio socio, Excursion excursion) {
         double precio = 0;
-
         if (socio instanceof Estandar) {
             precio = calcularCuota(socio) + excursion.getPrecioInscripcion() + ((Estandar) socio).getSeguroContratado().getPrecio();
-
         } else if (socio instanceof Federado) {
             double precioTemporal = calcularCuota(socio) + excursion.getPrecioInscripcion();
             precio = precioTemporal * 0.9;
-
         } else if (socio instanceof Infantil) {
             precio = calcularCuota(socio) + excursion.getPrecioInscripcion();
         }
-
         return precio;
     }
 
+    // Funcion para Calcular la cuenta segun el tipo de Socio que sea
     public static double calcularCuota(Socio socio) {
         double cuotaBase = 10.0; // Cuota base
-
-        // Verifica el tipo de socio y calcula la cuota en consecuencia
         if (socio instanceof Estandar) {
             // La cuota para Estandar es la cuotaBase sin cambios
         } else if (socio instanceof Federado) {
@@ -341,7 +346,6 @@ public class Datos {
                     break;
                 }
             }
-
             if (!numeroSocioValido) {
                 System.out.println("El número de socio ingresado no es válido. La inscripción no pudo ser realizada.");
                 return;
@@ -412,13 +416,13 @@ public class Datos {
                 mostrarTodasLasInscripciones();
                 break;
             case 2:
-                //mostrarPorSocio(listaInscripciones, listaSocios);
+                mostrarInscripcionPorSocio();
                 break;
             case 3:
-                //mostrarPorFechas(listaInscripciones);
+                mostrarInscripcionPorFecha();
                 break;
             case 4:
-                //mostrarPorSocioYFechas(listaInscripciones, listaSocios);
+                mostrarInscripcionesPorTipoSocioYFecha();
                 break;
             default:
                 System.out.println("Opción no válida.");
@@ -432,7 +436,6 @@ public class Datos {
             System.out.println("No hay inscripciones para mostrar.");
             return;
         }
-
         for (Inscripcion inscripcion : listaInscripciones) {
             System.out.println("Número de socio: " + inscripcion.getIdSocio());
 
@@ -468,15 +471,184 @@ public class Datos {
 
     //Mostrarporsocio
 
+    public static void mostrarInscripcionPorSocio() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Por favor, elija el tipo de socio para filtrar:");
+        System.out.println("1. Estandar");
+        System.out.println("2. Federado");
+        System.out.println("3. Infantil");
+        String tipoSocio = scanner.nextLine();
+
+        // Convertimos la entrada del usuario a los tipos correspondientes
+        String tipoElegido;
+        switch (tipoSocio) {
+            case "1":
+                tipoElegido = "Estandar";
+                break;
+            case "2":
+                tipoElegido = "Federado";
+                break;
+            case "3":
+                tipoElegido = "Infantil";
+                break;
+            default:
+                System.out.println("Tipo de socio no válido. Por favor, elija una opción entre 1 y 3.");
+                return; //Si el tipo de socio no es valido salimos de la funcion
+        }
+
+        mostrarSociosConInscripcionesPorTipo(tipoElegido);
+
+    }
+
+    public static void mostrarSociosConInscripcionesPorTipo(String tipoSocio) {
+        List<Socio> sociosConInscripciones = new ArrayList<>();
+
+        // Recorremos todas las inscripciones para buscar socios del tipo solicitado
+        for (Inscripcion inscripcion : listaInscripciones) {
+            Socio socio = obtenerSocioPorId(inscripcion.getIdSocio());
+
+            // Verificamos que el socio exista, sea del tipo solicitado y no haya sido incluido previamente
+            if (socio != null && tipoSocio.equals(socio.tipoSocio) && !contieneSocio(sociosConInscripciones, socio)) {
+                // Agregamos el socio a la lista
+                sociosConInscripciones.add(socio);
+            }
+        }
+
+        // Verificamos si hemos encontrado socios del tipo solicitado con inscripciones
+        if (!sociosConInscripciones.isEmpty()) {
+            System.out.println("Socios de tipo " + tipoSocio + " con inscripciones registradas:");
+            for (Socio socio : sociosConInscripciones) {
+                System.out.println(socio.toString());
+            }
+        } else {
+            System.out.println("No hay socios del tipo " + tipoSocio + " con inscripciones registradas.");
+        }
+    }
+
+    private static boolean contieneSocio(List<Socio> lista, Socio socio) {
+        for (Socio s : lista) {
+            if (s.getIdSocio() == socio.getIdSocio()) {
+                return true; // El socio ya está en la lista
+            }
+        }
+        return false; // El socio no está en la lista
+    }
+
+
     //Mostrarporfechas
+    public static void mostrarInscripcionPorFecha() {
+
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            // Solicitamos al usuario las fechas de inicio y fin para aplicar el filtro
+            System.out.println("Ingrese la fecha de inicio (dd/MM/yyyy): ");
+            Date fechaInicio = sdf.parse(scanner.nextLine());
+
+            System.out.println("Ingrese la fecha de fin (dd/MM/yyyy): ");
+            Date fechaFin = sdf.parse(scanner.nextLine());
+
+            // Filtrar y mostrar inscripciones
+            List<Inscripcion> inscripcionesFiltradas = filtrarInscripcionesPorFecha(fechaInicio, fechaFin);
+            if (inscripcionesFiltradas.isEmpty()) {
+                System.out.println("No hay inscripciones disponibles en el rango de fechas especificado.");
+            } else {
+                System.out.println("Inscripciones disponibles entre las fechas seleccionadas:");
+                for (Inscripcion inscripcion : inscripcionesFiltradas) {
+                    System.out.println("Inscripción ID: " + inscripcion.getIdInscripcion() + ", Fecha: " + sdf.format(inscripcion.getFechaInscripcion()));
+                }
+            }
+        } catch (ParseException e) {
+            System.out.println("Formato de fecha no válido. Por favor, ingrese la fecha en formato dd/MM/yyyy.");
+        }
+
+    }
+
+    private static List<Inscripcion> filtrarInscripcionesPorFecha(Date fechaInicio, Date fechaFin) {
+        List<Inscripcion> filtradas = new ArrayList<>();
+        for (Inscripcion inscripcion : listaInscripciones) {
+            if (!inscripcion.getFechaInscripcion().before(fechaInicio) && !inscripcion.getFechaInscripcion().after(fechaFin)) {
+                filtradas.add(inscripcion);
+            }
+        }
+        return filtradas;
+    }
 
     //Mostrarporsocioyfechas
 
+    public static void mostrarInscripcionesPorTipoSocioYFecha() {
+        Scanner scanner = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // Solicitar y procesar el tipo de socio
+        System.out.println("Por favor, elija el tipo de socio para filtrar:");
+        System.out.println("1. Estandar");
+        System.out.println("2. Federado");
+        System.out.println("3. Infantil");
+        String input = scanner.nextLine();
+        String tipoSocio = "";
+        switch (input) {
+            case "1":
+                tipoSocio = "Estandar";
+                break;
+            case "2":
+                tipoSocio = "Federado";
+                break;
+            case "3":
+                tipoSocio = "Infantil";
+                break;
+            default:
+                System.out.println("Opción no válida.");
+
+        }
+
+        // Solicitar y procesar las fechas
+        System.out.println("Ingrese la fecha de inicio (dd/MM/yyyy):");
+        LocalDate fechaInicio = LocalDate.parse(scanner.nextLine(), formatter);
+        System.out.println("Ingrese la fecha de fin (dd/MM/yyyy):");
+        LocalDate fechaFin = LocalDate.parse(scanner.nextLine(), formatter);
+
+        mostrarSociosConInscripcionesPorTipoYFechas(tipoSocio, fechaInicio, fechaFin);
+
+
+    }
+
+    private static void mostrarSociosConInscripcionesPorTipoYFechas(String tipoSocio, LocalDate fechaInicio, LocalDate fechaFin) {
+        List<Socio> sociosFiltrados = new ArrayList<>();
+
+        for (Inscripcion inscripcion : listaInscripciones) {
+            Socio socio = obtenerSocioPorId(inscripcion.getIdSocio());
+            Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion());
+            LocalDate fechaExcursion = excursion.getFechaExcursion().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+
+            if (socio != null && tipoSocio.equalsIgnoreCase(socio.tipoSocio) &&
+                    !sociosFiltrados.contains(socio) &&
+                    (fechaExcursion.isEqual(fechaInicio) || fechaExcursion.isAfter(fechaInicio)) &&
+                    (fechaExcursion.isEqual(fechaFin) || fechaExcursion.isBefore(fechaFin))) {
+                sociosFiltrados.add(socio);
+            }
+        }
+
+        // Mostrar los socios filtrados
+        if (!sociosFiltrados.isEmpty()) {
+            System.out.println("Socios de tipo " + tipoSocio + " con inscripciones entre las fechas dadas:");
+            for (Socio socio : sociosFiltrados) {
+                System.out.println(socio.toString());
+            }
+        } else {
+            System.out.println("No se encontraron socios del tipo " + tipoSocio + " con inscripciones en el rango de fechas dado.");
+        }
+    }
+
     //Subfunciones
 
-    //funcion para mostrar la lista de inscripciones en el metodo eliminarInscripciones
+    //funcion para mostrar la lista de inscripciones que cumplen la condicion de que la fecha
+    // sea anterior a la fecha de la excursion en el metodo eliminarInscripciones
     public static void mostrarInscripcionesBorrables() {
-
         Date fechaActual = new Date(); //fecha actual
         ArrayList<Inscripcion> listaInscripcionesBorrables = new ArrayList<Inscripcion>(); // nueva lista
         for(Inscripcion inscripcion : listaInscripciones) {
@@ -487,7 +659,6 @@ public class Datos {
             }
         }
         System.out.println(listaInscripcionesBorrables);
-
     }
 
     private static Inscripcion obtenerInscripcionPorId(int id) {

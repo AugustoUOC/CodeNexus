@@ -13,7 +13,7 @@ public class Federado extends Socio {
 
     // Constructor con todos los atributos
     public Federado(int idSocio, String nombre, Federacion federacion, String nif) {
-        super(idSocio, nombre, "modelo.Federado");
+        super(idSocio, nombre, "Federado");
         this.federacion = federacion;
         this.nif = nif;
 
@@ -59,14 +59,12 @@ public class Federado extends Socio {
     // Método toString para imprimir los detalles del socio federado
     @Override
     public String toString() {
-        return "modelo.Federado{" +
+        return "Federado{" +
                 "idSocio='" + getIdSocio() + '\'' +
                 ", nombre='" + getNombre() + '\'' +
                 ", tipoSocio='" + getTipoSocio() + '\'' +
                 ", federacion=" + federacion +
                 ", nif='" + nif + '\'' +
-                ", descuentoExcursion=" + descuentoExcursion +
-                ", descuentoCuota=" + descuentoCuota +
                 '}';
     }
 }

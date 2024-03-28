@@ -38,12 +38,11 @@ public class Infantil extends Socio {
     // Método toString para imprimir los detalles del socio infantil
     @Override
     public String toString() {
-        return "modelo.Infantil{" +
+        return "Infantil{" +
                 "idSocio=" + getIdSocio() +
                 ", nombre='" + getNombre() + '\'' +
                 ", tipoSocio='" + getTipoSocio() + '\'' +
                 ", idTutor=" + idTutor +
-                ", descuentoCuota=" + descuentoCuota +
                 '}';
     }
 }

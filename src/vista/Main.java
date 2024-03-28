@@ -39,7 +39,7 @@ public class Main {
                             Datos.addExcursion();
                             break;
                         case 2:
-                            Datos.mostrarExcursionesPorFechas(Datos.listaExcursiones);
+                            Datos.mostrarExcursionesPorFechas();
                             break;
                         default:
                             break;
@@ -59,7 +59,7 @@ public class Main {
                             Datos.addSocio();
                             break;
                         case 2:
-                            //Modificar tipo de seguro de socio estandar
+
                             break;
                         case 3:
                             Datos.deleteSocio(Datos.listaSocios);
