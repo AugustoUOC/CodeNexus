@@ -93,7 +93,7 @@ public class Main {
                             break;
                         case 3:
 
-                            Datos.showInscripcion(Datos.listaInscripciones, Datos.listaSocios);
+                            Datos.showInscripcion(Datos.listaInscripciones, Datos.listaSocios, Datos.listaExcursiones);
                             break;
                         default:
                             break;

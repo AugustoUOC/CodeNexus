@@ -61,7 +61,7 @@ public abstract class Socio {
     // Método toString para imprimir los detalles del socio
     @Override
     public String toString() {
-        return "modelo.Socio{" +
+        return "Socio{" +
                 "idSocio=" + idSocio +
                 ", nombre='" + nombre + '\'' +
                 ", tipoSocio='" + tipoSocio + '\'' +
