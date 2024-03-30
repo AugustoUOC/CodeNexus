@@ -14,8 +14,7 @@ public class Datos {
 
     public Datos() {
     }
-
-
+    
     //Contadores
 
     public static int contadorExcursiones = 0;

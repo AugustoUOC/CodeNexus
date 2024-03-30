@@ -5,7 +5,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Clases en patrón MVC">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CodeNexus.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/CodeNexus.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/controlador/Controlador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Datos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Estandar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Excursion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Federacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Federado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Infantil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Inscripcion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Seguro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/modelo/Socio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/vista/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/out/production/CodeNexus/vista/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Datos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Estandar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Estandar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Excursion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Excursion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Federacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Federacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Federado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Federado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Infantil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Infantil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Inscripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Inscripcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Seguro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Seguro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/modelo/Socio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Socio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/vista/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus - Antoni/src/vista/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/CodeNexus.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CodeNexus.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/controlador/Controlador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Datos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Estandar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Excursion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Federacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Federado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Infantil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Inscripcion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Seguro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/modelo/Socio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/out/production/CodeNexus/vista/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/controlador/Controlador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Datos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Estandar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Excursion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Federacion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Federado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Infantil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Inscripcion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Seguro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/modelo/Socio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeNexus-Alejandro/src/vista/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Estandar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Excursion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Infantil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Inscripcion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Seguro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Socio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,14 +100,26 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Antoni",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus"
+    "last_opened_file_path": "C:/Users/Varik/Desktop/UOC/SEMESTRE 4/PROGRAMACIÓN ORIENTADA A OBJETOS CON ACCESO A BBDD/CodeNexusR/CodeNexus/.idea"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Varik\Desktop\UOC\SEMESTRE 4\PROGRAMACIÓN ORIENTADA A OBJETOS CON ACCESO A BBDD\CodeNexusR\CodeNexus\.idea" />
+      <recent name="C:\Users\Varik\Desktop\UOC\SEMESTRE 4\PROGRAMACIÓN ORIENTADA A OBJETOS CON ACCESO A BBDD\CodeNexusR\CodeNexus" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Varik\Desktop\UOC\SEMESTRE 4\PROGRAMACIÓN ORIENTADA A OBJETOS CON ACCESO A BBDD\CodeNexusR\CodeNexus" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
