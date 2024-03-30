@@ -21,6 +21,8 @@ public class Datos {
     public static List<Socio> listaSocios = new ArrayList<>();
     public static List<Inscripcion> listaInscripciones = new ArrayList<>();
 
+
+
     //Métodos para excursiones
     public static void addExcursion() {
         Scanner scanner = new Scanner(System.in);
@@ -95,9 +97,8 @@ public class Datos {
         return fecha;
     }
 
-
     //Métodos para Socios
-    public static void deleteSocio(List<Socio> socios) {
+    public static void deleteSocio(List<Socio> socios, List<Inscripcion> listaInscripciones) {
         if (socios.isEmpty()) {
             System.out.println("No hay socios para eliminar.");
             return;
@@ -121,11 +122,23 @@ public class Datos {
         // Eliminar el socio seleccionado
         Socio socioAEliminar = socios.get(opcion - 1);
 
-
-        socios.remove(socioAEliminar);
-        System.out.println("El socio " + socioAEliminar.getNombre() + " ha sido eliminado correctamente.");
-
+        //Confirmamos si ha hecho alguna excursion
+        boolean confirmacion = true;
+        for (Inscripcion inscripcion : listaInscripciones) {
+            if (inscripcion.getIdSocio() == socioAEliminar.getIdSocio()) {
+                confirmacion = false; // El socio participó en esta excursión
+            } else {
+                confirmacion = true;
+            }
+        }
+        if (confirmacion) {
+            socios.remove(socioAEliminar);
+            System.out.println("El socio " + socioAEliminar.getNombre() + " ha sido eliminado correctamente.");
+        } else {
+            System.out.println("El socio " + socioAEliminar.getNombre() + " no puede ser eliminado ya que ha realizado o va a realizar una excursión.");
+        }
     }
+
     public static void addSocio() {
         Socio nuevoSocio = null; // Inicialización por defecto
         Scanner scanner = new Scanner(System.in);
@@ -216,6 +229,51 @@ public class Datos {
         listaSocios.add(nuevoSocio);
         System.out.println("modelo.Socio agregado correctamente.");
     }
+
+    public static void modificarSeguro() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el ID del socio estándar para modificar su seguro:");
+        int idSocio = scanner.nextInt();
+        scanner.nextLine();
+
+        Socio socio = obtenerSocioPorId(idSocio, listaSocios);
+        if (socio == null) {
+            System.out.println("No se encontró ningún socio con el ID especificado.");
+            return;
+        }
+
+
+        // Verificar si el socio es de tipo estándar
+        if (socio instanceof Estandar socioEstandar) {
+            // Mostrar el seguro actual del socio
+            System.out.println("El seguro actual del socio es: " + socioEstandar.getSeguroContratado());
+
+            // Mostrar opciones de seguro
+            System.out.println("Seleccione el nuevo seguro:");
+            System.out.println("1. Seguro Básico");
+            System.out.println("2. Seguro Completo");
+            int opcionSeguro = scanner.nextInt();
+            scanner.nextLine();
+
+            // Asignar el nuevo seguro al socio
+            switch (opcionSeguro) {
+                case 1:
+                    socioEstandar.modificarSeguro(new Seguro(false, 0.0)); // Tipo básico
+                    break;
+                case 2:
+                    socioEstandar.modificarSeguro(new Seguro(true, 0.0)); // Tipo completo
+                    break;
+                default:
+                    System.out.println("Opción no válida. No se realizaron cambios en el seguro.");
+                    break;
+            }
+
+            // Mostrar el nuevo seguro del socio
+            System.out.println("El nuevo seguro del socio es: " + socioEstandar.getSeguroContratado());
+        } else {
+            System.out.println("El socio no es de tipo estándar. No se puede modificar el seguro.");
+        }
+    }
     public static void showSocio(List<Socio> socios) {
         Scanner scanner = new Scanner(System.in);
 
@@ -256,13 +314,65 @@ public class Datos {
                 System.out.println("Opción no válida.");
         }
     }
-    public void showFactura() {
-        // Implementación para mostrar la factura del socio
+    //Funcion para mostrar el Importe total de la Factura segun el Socio y las excursiones que tiene asignadas
+    public static void mostrarFactura(List<Socio> listaSocios, List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el ID del socio para mostrar su factura:");
+        int idSocio = scanner.nextInt();
+        Socio socioFactura = obtenerSocioPorId(idSocio, listaSocios);
+        if (socioFactura == null) {
+            System.out.println("Socio no encontrado");
+        } else {
+            System.out.println("Id del Socio: " + socioFactura.getIdSocio());
+
+            ArrayList<Inscripcion> inscripciones = new ArrayList<>();
+            for (Inscripcion inscripcion : listaInscripciones) {
+                if (inscripcion.getIdSocio() == socioFactura.getIdSocio()) {
+                    inscripciones.add(inscripcion);
+                }
+            }
+            double coste = 0;
+            for (Inscripcion inscripcion : inscripciones) {
+                for (Excursion excursion : listaExcursiones) {
+                    if (inscripcion.getIdExcursion() == excursion.getIdExcursion()) {
+                        coste += calcularCosteExcursion(socioFactura, excursion);
+                    }
+                }
+            }
+            System.out.println("Factura mensual del socio numero: " + idSocio + ", es igual a: " + coste + " Euros.");
+        }
     }
-    public double calcularCuota() {
-        // Implementación para calcular la cuota del socio
-        return 0.0; // Retorna un valor temporal, debes reemplazarlo con la lógica real
+
+    // Funcion para la logica de calcular la cuota + el coste de las inscripciones segun el Socio
+    public static double calcularCosteExcursion(Socio socio, Excursion excursion) {
+        double precio = 0;
+        if (socio instanceof Estandar) {
+            precio = calcularCuota(socio) + excursion.getPrecioInscripcion() + ((Estandar) socio).getSeguroContratado().getPrecio();
+        } else if (socio instanceof Federado) {
+            double precioTemporal = calcularCuota(socio) + excursion.getPrecioInscripcion();
+            precio = precioTemporal * 0.9;
+        } else if (socio instanceof Infantil) {
+            precio = calcularCuota(socio) + excursion.getPrecioInscripcion();
+        }
+        return precio;
     }
+
+
+    // Funcion para Calcular la cuenta segun el tipo de Socio que sea
+    public static double calcularCuota(Socio socio) {
+        double cuotaBase = 10.0; // Cuota base
+        if (socio instanceof Estandar) {
+            // La cuota para Estandar es la cuotaBase sin cambios
+        } else if (socio instanceof Federado) {
+            // Federado tiene un descuento en la cuota
+            cuotaBase *= 0.95;
+        } else if (socio instanceof Infantil) {
+            // Infantil tiene un 50% de descuento
+            cuotaBase *= 0.5;
+        }
+        return cuotaBase;
+    }
+
 
     //Métodos para inscripciones
     public static void addInscripcion(List<Socio> listaSocios, List<Excursion> excursiones, Date fechaInscripcion) {
@@ -335,10 +445,30 @@ public class Datos {
             System.out.println("Inscripción agregada correctamente.");
         }
     }
-    public void deleteInscripcion() {
-        // Lógica para eliminar una inscripción
+    public static void eliminarInscripcion(List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
+        Scanner scanner = new Scanner(System.in);
+        mostrarInscripcionesBorrables(listaExcursiones,listaInscripciones);
+        System.out.println("Elige al ID de la Inscripcion que quieres Eliminar");
+        int idParaBorrar = scanner.nextInt();
+        Inscripcion inscripcionParaBorrar = obtenerInscripcionPorId(idParaBorrar, listaInscripciones);
+        listaInscripciones.remove(inscripcionParaBorrar);
     }
-    public static void showInscripcion(List<Inscripcion> listaInscripciones, List<Socio> listaSocios) {
+    //funcion para mostrar la lista de inscripciones que cumplen la condicion de que la fecha
+    // sea anterior a la fecha de la excursion en el metodo eliminarInscripciones
+    public static void mostrarInscripcionesBorrables(List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
+        Date fechaActual = new Date(); //fecha actual
+        ArrayList<Inscripcion> listaInscripcionesBorrables = new ArrayList<Inscripcion>(); // nueva lista
+        for(Inscripcion inscripcion : listaInscripciones) {
+            int idExcursion = inscripcion.getIdExcursion();
+            Excursion excursion = obtenerExcursionPorId(idExcursion, listaExcursiones);
+            if (fechaActual.before(excursion.getFechaExcursion())) {
+                listaInscripcionesBorrables.add(inscripcion);
+            }
+        }
+        System.out.println(listaInscripcionesBorrables);
+    }
+
+    public static void showInscripcion(List<Inscripcion> listaInscripciones, List<Socio> listaSocios,List<Excursion> listaExcursiones) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Seleccione una opción:");
         System.out.println("1. No aplicar filtros");
@@ -350,16 +480,16 @@ public class Datos {
 
         switch (opcion) {
             case 1:
-                mostrarTodasLasInscripciones(listaInscripciones, listaSocios);
+                mostrarTodasLasInscripciones(listaInscripciones, listaSocios, listaExcursiones);
                 break;
             case 2:
-                //mostrarPorSocio(listaInscripciones, listaSocios);
+                mostrarInscripcionPorSocio(listaInscripciones, listaSocios, listaExcursiones);
                 break;
             case 3:
-                //mostrarPorFechas(listaInscripciones);
+                mostrarInscripcionPorFecha(listaInscripciones, listaSocios, listaExcursiones);
                 break;
             case 4:
-                //mostrarPorSocioYFechas(listaInscripciones, listaSocios);
+                mostrarInscripcionPorSocioYFecha(listaInscripciones, listaSocios, listaExcursiones);
                 break;
             default:
                 System.out.println("Opción no válida.");
@@ -367,52 +497,205 @@ public class Datos {
         }
     }
 
-
-    private static void mostrarTodasLasInscripciones(List<Inscripcion> listaInscripciones, List<Socio> listaSocios) {
+    private static void mostrarTodasLasInscripciones(List<Inscripcion> listaInscripciones, List<Socio> listaSocios, List<Excursion> listaExcursiones) {
         if (listaInscripciones.isEmpty()) {
             System.out.println("No hay inscripciones para mostrar.");
             return;
-        }
+        } else {
+            for (Inscripcion inscripcion : listaInscripciones) {
 
-        for (Inscripcion inscripcion : listaInscripciones) {
-            System.out.println("Número de socio: " + inscripcion.getIdSocio());
+                System.out.println("Número de socio: " + inscripcion.getIdSocio());
 
-            // Buscar el nombre del socio correspondiente
-            Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
-            if (socio != null) {
-                System.out.println("Nombre del socio: " + socio.getNombre());
-            } else {
-                System.out.println("Nombre del socio: No encontrado");
+                // Buscar el nombre del socio correspondiente
+                Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
+                if (socio != null) {
+                    System.out.println("Nombre del socio: " + socio.getNombre());
+                } else {
+                    System.out.println("Nombre del socio: No encontrado");
+                }
+
+                // Buscar la excursión correspondiente a la inscripción
+                Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
+                if (excursion != null) {
+                    // Mostrar fecha de la excursión y descripción
+                    System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                    System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
+
+                    ;
+                    // Calcular e imprimir el importe con los cargos o descuentos aplicados
+                    double importeTotal = calcularImporteTotal(excursion, socio);
+                    System.out.println("Importe total: " + importeTotal);
+                } else {
+                    System.out.println("No se encontró información de la excursión para esta inscripción.");
+                }
+
+                System.out.println(); // Separador entre cada inscripción
             }
-
-            System.out.println("Fecha de inscripción: " + inscripcion.getFechaInscripcion());
-
-            // Buscar la excursión correspondiente a la inscripción
-            Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), Datos.listaExcursiones);
-            if (excursion != null) {
-                // Mostrar fecha de la excursión y descripción
-                System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
-                System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
-
-                ;
-                // Calcular e imprimir el importe con los cargos o descuentos aplicados
-                double importeTotal = calcularImporteTotal(excursion, socio);
-                System.out.println("Importe total: " + importeTotal);
-            } else {
-                System.out.println("No se encontró información de la excursión para esta inscripción.");
-            }
-
-            System.out.println(); // Separador entre cada inscripción
         }
-
     }
 
     //Mostrarporsocio
+    public static void mostrarInscripcionPorSocio(List<Inscripcion> listaInscripciones, List<Socio> listaSocios, List<Excursion> listaExcursiones) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el ID del socio:");
+        int idSocioInscripciones = scanner.nextInt();
+        scanner.nextLine();
 
+        if (listaInscripciones.isEmpty()) {
+            System.out.println("No hay inscripciones para mostrar.");
+            return;
+        } else {
+        for (Inscripcion inscripcion : listaInscripciones) {
+            if (idSocioInscripciones == inscripcion.getIdSocio()) {
+                System.out.println("Número de socio: " + inscripcion.getIdSocio());
+
+                // Buscar el nombre del socio correspondiente
+                Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
+                if (socio != null) {
+                    System.out.println("Nombre del socio: " + socio.getNombre());
+                } else {
+                    System.out.println("Nombre del socio: No encontrado");
+                }
+
+                // Buscar la excursión correspondiente a la inscripción
+                Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
+                if (excursion != null) {
+                    // Mostrar fecha de la excursión y descripción
+                    System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                    System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
+
+                    ;
+                    // Calcular e imprimir el importe con los cargos o descuentos aplicados
+                    double importeTotal = calcularImporteTotal(excursion, socio);
+                    System.out.println("Importe total: " + importeTotal);
+                } else {
+                    System.out.println("No se encontró información de la excursión para esta inscripción.");
+                }
+
+                System.out.println(); // Separador entre cada inscripción
+            }
+        }
+        }
+    }
     //Mostrarporfechas
+    public static void mostrarInscripcionPorFecha(List<Inscripcion> listaInscripciones, List<Socio> listaSocios, List<Excursion> listaExcursiones) {
 
-    //Mostrarporsocioyfechas
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
+            // Solicitamos al usuario las fechas de inicio y fin para aplicar el filtro
+            System.out.println("Ingrese la fecha de inicio (dd/MM/yyyy): ");
+            Date fechaInicio = leerFecha(scanner, dateFormat);
+
+            System.out.println("Ingrese la fecha de fin (dd/MM/yyyy): ");
+            Date fechaFin = leerFecha(scanner, dateFormat);
+
+            if (fechaInicio.after(fechaFin)) {
+                System.out.println("La fecha de inicio no puede ser posterior a la fecha de fin.");
+                return;
+            }
+
+            System.out.println("Inscripciones entre " + dateFormat.format(fechaInicio) + " y " + dateFormat.format(fechaFin) + ":");
+
+            boolean inscripcionesEncontradas = false;
+            for (Inscripcion inscripcion : listaInscripciones) {
+                Date fechaInscripcion = inscripcion.getFechaInscripcion();
+                if (fechaInscripcion.after(fechaInicio) && fechaInscripcion.before(fechaFin)) {
+
+                    System.out.println("Número de socio: " + inscripcion.getIdSocio());
+
+                    // Buscar el nombre del socio correspondiente
+                    Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
+                    if (socio != null) {
+                        System.out.println("Nombre del socio: " + socio.getNombre());
+                    } else {
+                        System.out.println("Nombre del socio: No encontrado");
+                    }
+
+                    // Buscar la excursión correspondiente a la inscripción
+                    Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
+                    if (excursion != null) {
+                        // Mostrar fecha de la excursión y descripción
+                        System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                        System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
+
+                        ;
+                        // Calcular e imprimir el importe con los cargos o descuentos aplicados
+                        double importeTotal = calcularImporteTotal(excursion, socio);
+                        System.out.println("Importe total: " + importeTotal);
+                    } else {
+                        System.out.println("No se encontró información de la excursión para esta inscripción.");
+                    }
+                    inscripcionesEncontradas = true;
+                }
+            }
+            if (!inscripcionesEncontradas) {
+                System.out.println("No se encontraron inscripciones en el rango de fechas especificado.");
+            }
+
+    }
+
+
+    public static void mostrarInscripcionPorSocioYFecha(List<Inscripcion> listaInscripciones, List<Socio> listaSocios, List<Excursion> listaExcursiones){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el ID del socio:");
+        int idSocioInscripciones = scanner.nextInt();
+        scanner.nextLine();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Solicitamos al usuario las fechas de inicio y fin para aplicar el filtro
+        System.out.println("Ingrese la fecha de inicio (dd/MM/yyyy): ");
+        Date fechaInicio = leerFecha(scanner, dateFormat);
+
+        System.out.println("Ingrese la fecha de fin (dd/MM/yyyy): ");
+        Date fechaFin = leerFecha(scanner, dateFormat);
+
+        if (fechaInicio.after(fechaFin)) {
+            System.out.println("La fecha de inicio no puede ser posterior a la fecha de fin.");
+            return;
+        }
+
+        System.out.println("Inscripciones del socio número: "+ idSocioInscripciones+", entre " + dateFormat.format(fechaInicio) + " y " + dateFormat.format(fechaFin) + ":");
+
+        boolean inscripcionesEncontradas = false;
+        for (Inscripcion inscripcion : listaInscripciones) {
+            Date fechaInscripcion = inscripcion.getFechaInscripcion();
+            if (fechaInscripcion.after(fechaInicio) && fechaInscripcion.before(fechaFin)) {
+                if (idSocioInscripciones == inscripcion.getIdSocio()) {
+                    System.out.println("Número de socio: " + inscripcion.getIdSocio());
+
+                    // Buscar el nombre del socio correspondiente
+                    Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
+                    if (socio != null) {
+                        System.out.println("Nombre del socio: " + socio.getNombre());
+                    } else {
+                        System.out.println("Nombre del socio: No encontrado");
+                    }
+
+                    // Buscar la excursión correspondiente a la inscripción
+                    Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
+                    if (excursion != null) {
+                        // Mostrar fecha de la excursión y descripción
+                        System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                        System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
+
+                        ;
+                        // Calcular e imprimir el importe con los cargos o descuentos aplicados
+                        double importeTotal = calcularImporteTotal(excursion, socio);
+                        System.out.println("Importe total: " + importeTotal);
+                    } else {
+                        System.out.println("No se encontró información de la excursión para esta inscripción.");
+                    }
+                    inscripcionesEncontradas = true;
+                }
+            }
+        }
+        if (!inscripcionesEncontradas) {
+            System.out.println("No se encontraron inscripciones en el rango de fechas especificado.");
+        }
+
+    }
     //Subfunciones
     private static Excursion obtenerExcursionPorId(int idExcursion, List<Excursion> listaExcursiones) {
         for (Excursion excursion : listaExcursiones) {
@@ -421,6 +704,22 @@ public class Datos {
             }
         }
         return null; // Retorna null si no se encuentra la excursión con el ID dado
+    }
+    private static Inscripcion obtenerInscripcionPorId(int idInscripcion, List<Inscripcion> listaInscripciones) {
+        for (Inscripcion inscripcion : listaInscripciones) {
+            if (inscripcion.getIdInscripcion() == idInscripcion) {
+                return inscripcion;
+            }
+        }
+        return null; // Retorna null si no se encuentra la excursión con el ID dado
+    }
+    private static Socio obtenerSocioPorId(int idSocio, List<Socio> listaSocios) {
+        for (Socio socio : listaSocios) {
+            if (socio.getIdSocio() == idSocio) {
+                return socio;
+            }
+        }
+        return null; // Retorna null si no se encuentra el socio con el ID dado
     }
 
     private static double calcularImporteTotal(Excursion excursion, Socio socio) {
@@ -445,14 +744,6 @@ public class Datos {
         }
 
         return precioInscripcion;
-    }
-    private static Socio obtenerSocioPorId(int idSocio, List<Socio> listaSocios) {
-        for (Socio socio : listaSocios) {
-            if (socio.getIdSocio() == idSocio) {
-                return socio;
-            }
-        }
-        return null; // Retorna null si no se encuentra el socio con el ID dado
     }
 
 }

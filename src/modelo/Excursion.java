@@ -73,7 +73,7 @@ public class Excursion {
     // Método toString para imprimir los detalles de la excursión
     @Override
     public String toString() {
-        return "modelo.Excursion{" +
+        return "Excursion{" +
                 "idExcursion='" + idExcursion + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", fechaExcursion=" + fechaExcursion +
