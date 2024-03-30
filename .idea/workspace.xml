@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Clases en patrón MVC" />
+    <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Clases en patrón MVC">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Estandar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Estandar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Excursion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Excursion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Infantil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Infantil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Inscripcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Inscripcion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Seguro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Seguro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Socio.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Socio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Datos.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +35,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "B3LM0N"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;B3LM0N&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -45,16 +60,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Marc",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

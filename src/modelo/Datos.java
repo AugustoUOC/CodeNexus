@@ -146,11 +146,11 @@ public class Datos {
         System.out.println("Ingrese el nombre del socio:");
         String nombre = scanner.nextLine();
 
-        System.out.println("Seleccione el tipo de socio (modelo.Estandar / modelo.Federado / modelo.Infantil):");
+        System.out.println("Seleccione el tipo de socio:\n1. Socio Estandar\n2. Socio Federado\n3. Socio Infantil");
         String tipoSocio = scanner.nextLine();
 
         switch (tipoSocio.toLowerCase()) {
-            case "estandar":
+            case "1":
                 System.out.println("Ingrese el NIF del socio:");
                 String nifEstandar = scanner.nextLine();
                 System.out.println("Seleccione el tipo de seguro:");
@@ -177,7 +177,7 @@ public class Datos {
                 Seguro seguroEstandar = new Seguro(seguro, 0.0);
                 nuevoSocio = new Estandar(++contadorSocios, nombre, nifEstandar, seguroEstandar);
                 break;
-            case "federado":
+            case "2":
                 System.out.println("Ingrese el NIF del socio:");
                 String nifFederado = scanner.nextLine();
                 System.out.println("Ingrese el nombre de la federación:");
@@ -185,7 +185,7 @@ public class Datos {
                 Federacion federacion = new Federacion(++contadorFederaciones, nombreFederacion);
                 nuevoSocio = new Federado(++contadorSocios, nombre, federacion, nifFederado);
                 break;
-            case "infantil":
+            case "3":
                 String nombreTutor = scanner.nextLine();
                 System.out.println("Ingrese el ID del tutor:");
                 int idTutor = scanner.nextInt();
@@ -227,7 +227,7 @@ public class Datos {
         }
 
         listaSocios.add(nuevoSocio);
-        System.out.println("modelo.Socio agregado correctamente.");
+        System.out.println("Socio agregado correctamente.");
     }
 
     public static void modificarSeguro() {
@@ -396,13 +396,13 @@ public class Datos {
                     socioElegido = socio;
                     break;
                 }
-            }
 
-            if (!numeroSocioValido) {
-                System.out.println("El número de socio ingresado no es válido. La inscripción no pudo ser realizada.");
-                return;
+                if (!numeroSocioValido) {
+                    System.out.println("El número de socio ingresado no es válido. La inscripción no pudo ser realizada.");
+                    return;
+                }
             }
-
+        }
             // Mostrar los detalles del socio elegido y verificar si es correcto
             System.out.println("Se ha encontrado al siguiente socio:");
             System.out.println("Número de socio: " + socioElegido.getIdSocio());
@@ -444,7 +444,7 @@ public class Datos {
             listaInscripciones.add(inscripcion);
             System.out.println("Inscripción agregada correctamente.");
         }
-    }
+
     public static void eliminarInscripcion(List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
         Scanner scanner = new Scanner(System.in);
         mostrarInscripcionesBorrables(listaExcursiones,listaInscripciones);
@@ -634,7 +634,6 @@ public class Datos {
             }
 
     }
-
 
     public static void mostrarInscripcionPorSocioYFecha(List<Inscripcion> listaInscripciones, List<Socio> listaSocios, List<Excursion> listaExcursiones){
         Scanner scanner = new Scanner(System.in);
