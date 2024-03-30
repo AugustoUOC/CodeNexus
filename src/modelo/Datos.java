@@ -20,7 +20,7 @@ public class Datos {
     public static List<Excursion> listaExcursiones = new ArrayList<>();
     public static List<Socio> listaSocios = new ArrayList<>();
     public static List<Inscripcion> listaInscripciones = new ArrayList<>();
-    public static List<Federacion> listaFederaciones = new ArrayList<>();
+
 
 
     //Métodos para excursiones
