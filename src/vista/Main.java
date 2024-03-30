@@ -59,16 +59,16 @@ public class Main {
                             Datos.addSocio();
                             break;
                         case 2:
-                            //Modificar tipo de seguro de socio estandar
+                            Datos.modificarSeguro();
                             break;
                         case 3:
-                            Datos.deleteSocio(Datos.listaSocios);
+                            Datos.deleteSocio(Datos.listaSocios, Datos.listaInscripciones);
                             break;
                         case 4:
                             Datos.showSocio(Datos.listaSocios);
                             break;
                         case 5:
-                            //Modificar factura mensual
+                            Datos.mostrarFactura(Datos.listaSocios, Datos.listaExcursiones, Datos.listaInscripciones);
                             break;
                         default:
                             break;
@@ -89,10 +89,9 @@ public class Main {
                             Datos.addInscripcion(Datos.listaSocios,Datos.listaExcursiones, fechaActual);
                             break;
                         case 2:
-                            //Eliminar Inscripciones
+                            Datos.eliminarInscripcion(Datos.listaExcursiones, Datos.listaInscripciones);
                             break;
                         case 3:
-
                             Datos.showInscripcion(Datos.listaInscripciones, Datos.listaSocios, Datos.listaExcursiones);
                             break;
                         default:
