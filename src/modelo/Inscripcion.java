@@ -1,5 +1,6 @@
 package modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,15 +62,10 @@ public class Inscripcion {
     // Método toString para imprimir los detalles de la inscripción
     @Override
     public String toString() {
-        return "Inscripcion{" +
-                "idInscripcion=" + idInscripcion +
-                ", idSocio=" + idSocio +
-                ", idExcursion='" + idExcursion + '\'' +
-                ", fechaInscripcion=" + fechaInscripcion +
-                '}';
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaTransformada = formatoFecha.format(fechaInscripcion);
+        return "Inscripcion con id número " + idInscripcion + ", realizada el " + fechaTransformada +
+                ".\nAsociada a la excursión número " + idExcursion +" y al socio número " + idSocio + ".";
     }
-
-    // Métodos adicionales
-
 }
 

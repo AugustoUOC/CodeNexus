@@ -35,9 +35,7 @@ public class Federacion {
     // Método toString para imprimir los detalles de la federación
     @Override
     public String toString() {
-        return "modelo.Federacion{" +
-                "idFederacion='" + idFederacion + '\'' +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return "La federacion se llama " + nombre +
+                "y su id es el número " + idFederacion + ".";
     }
 }

@@ -24,6 +24,7 @@ public class Excursion {
     public Excursion(int idExcursion, String descripcion, Date fechaExcursion, int duracionDias, double precioInscripcion) {
         this.idExcursion = idExcursion;
         this.descripcion = descripcion;
+
         this.fechaExcursion = fechaExcursion;
         this.duracionDias = duracionDias;
         this.precioInscripcion = precioInscripcion;
@@ -70,18 +71,21 @@ public class Excursion {
         this.precioInscripcion = precioInscripcion;
     }
 
+
+
+
+
     // Método toString para imprimir los detalles de la excursión
+
     @Override
     public String toString() {
-        return "Excursion{" +
-                "idExcursion='" + idExcursion + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", fechaExcursion=" + fechaExcursion +
-                ", duracionDias=" + duracionDias +
-                ", precioInscripcion=" + precioInscripcion +
-                '}';
+        //Transformar la fecha al formato deseado para que lo imporima
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaTransformada = formatoFecha.format(fechaExcursion);
+        return "Excursión con id : " + idExcursion + ".\n" +
+                "Descripción = " + descripcion + ".\n" +
+                "Fecha de la excursión = " + fechaTransformada + ", con una duración de " + duracionDias +" días.\n" +
+                "El precio de inscripción es de " + precioInscripcion +" Euros.\n";
     }
-
-    // Métodos adicionales
 
 }

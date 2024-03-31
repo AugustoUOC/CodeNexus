@@ -35,19 +35,18 @@ public class Estandar extends Socio {
     }
 
     // Método para modificar el seguro contratado
-    public void modificarSeguro(Seguro nuevoSeguro) {
+    public void crearSeguro(Seguro nuevoSeguro) {
         this.seguroContratado = nuevoSeguro;
     }
 
     // Método toString para imprimir los detalles del socio estándar
     @Override
     public String toString() {
-        return "modelo.Estandar{" +
-                "numeroSocio='" + getIdSocio() + '\'' +
-                ", nombre='" + getNombre() + '\'' +
-                ", tipoSocio='" + getTipoSocio() + '\'' +
-                ", seguroContratado=" + seguroContratado +
-                ", nif='" + nif + '\'' +
-                '}';
+        String tipoSeguro = "básico";
+        if (seguroContratado.tipo) {
+            tipoSeguro = "completo";
+        }
+        return "Socio con id número: " +getIdSocio() + ", llamado: " +  getNombre() + ", con NIF: " + nif + ".\n" +
+                "Tiene un seguro " +  tipoSeguro + " que vale " + seguroContratado.precio +" euros.";
     }
 }

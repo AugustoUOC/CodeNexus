@@ -55,17 +55,11 @@ public abstract class Socio {
     }
 
 
-    // Otros métodos
-
-
     // Método toString para imprimir los detalles del socio
     @Override
     public String toString() {
-        return "Socio{" +
-                "idSocio=" + idSocio +
-                ", nombre='" + nombre + '\'' +
-                ", tipoSocio='" + tipoSocio + '\'' +
-
-                '}';
+        return "Socio " + tipoSocio + " creado.\n" +
+                "Su id es el número " + idSocio +
+                " y se llama " + nombre + ".";
     }
 }
