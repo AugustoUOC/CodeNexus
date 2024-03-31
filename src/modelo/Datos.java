@@ -138,7 +138,7 @@ public class Datos {
                     System.out.println("Al próximo error, se detendrá la posibilidad de borrar un socio.\n");
                     System.out.println("Introduzca un número de socio de la lista.");
                     contadorBorrado = contadorBorrado + 1;
-                } else if (contadorBorrado > 2) {
+                } else {
                     System.out.println("\n----------------------------------");
                     System.out.println("     Esta opción no es válida");
                     System.out.println("----------------------------------\n");
@@ -158,6 +158,7 @@ public class Datos {
         for (Inscripcion inscripcion : listaInscripciones) {
             if (inscripcion.getIdSocio() == socioAEliminar.getIdSocio()) {
                 confirmacion = false; // El socio participó en esta excursión
+                break;
             }
         }
 
@@ -178,7 +179,7 @@ public class Datos {
         String nombre = scanner.nextLine();
         System.out.println("Seleccione el tipo de socio:");
         int contadorTipo = 1;
-        String tipoSocio = "1";
+        var tipoSocio = "1";
         System.out.println("1. Socio Estandar\n2. Socio Federado\n3. Socio Infantil");
         while (continuarTipo) {
             if (contadorTipo <= 3){
