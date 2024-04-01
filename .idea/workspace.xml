@@ -6,18 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Clases en patrón MVC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/modelo/DatosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test/modelo/DatosTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Estandar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Excursion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Infantil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Inscripcion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Seguro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Socio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Datos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Estandar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Estandar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Excursion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Excursion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Federacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Federacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Federado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Federado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Infantil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Infantil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Inscripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Inscripcion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Seguro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Seguro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Socio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Socio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,17 +59,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Alejandro",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Alejandro&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -107,8 +106,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/modelo/Datos.java</url>
-          <line>540</line>
-          <option name="timeStamp" value="2" />
+          <line>651</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

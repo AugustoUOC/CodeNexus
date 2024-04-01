@@ -1,10 +1,6 @@
 package vista;
-
-import modelo.Datos;
-
 import modelo.*;
-
-
+import modelo.Datos;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -29,67 +25,66 @@ public class Main {
             boolean continuarSocio = true;
             boolean continuarInscripcion = true;
             switch (opcion) {
-                    case 1:
-                        System.out.println("\n-------------------------------------------------------");
-                        System.out.println("     Entrando al menú de la gestión de excursiones");
-                        System.out.println("-------------------------------------------------------");
-                        System.out.println("\n¿Qué le gustaría hacer?");
-                        while (continuarExcursion) {
-                            System.out.println("1. Añadir excursión");
-                            System.out.println("2. Mostrar escursiones");
-                            System.out.println("0. Volver al menú principal");
-                            int opcionExcursion = scanner.nextInt();
-                            scanner.nextLine();
-                            switch (opcionExcursion) {
-                                case 1:
-                                    Datos.crearExcursion();
-                                    System.out.println("¿Quieres realizar alguna otra gestión de las excursiones?");
-                                    System.out.println("1. Si");
-                                    System.out.println("2. No");
-                                    System.out.println("(Cualquier otra opción tomará la opción 'No')");
-                                    int posibildadVolver1 = scanner.nextInt();
-                                    if (posibildadVolver1 == 1) {
-                                        System.out.println("\n¿Qué otra gestíón de excursiones le gustaría hacer?");
-                                    } else {
-                                        continuarExcursion = false;
-                                        System.out.println("\n-------------------------------------");
-                                        System.out.println("     Volviendo al menú principal");
-                                        System.out.println("-------------------------------------\n");
-                                    }
-                                    break;
-                                case 2:
-                                    Datos.mostrarExcursionesPorFechas(Datos.listaExcursiones);
-                                    System.out.println("¿Quieres realizar alguna otra gestión de las excursiones?");
-                                    System.out.println("1. Si");
-                                    System.out.println("2. No");
-                                    System.out.println("(Cualquier otra opción tomará la opción 'No')");
-                                    int posibildadVolver2 = scanner.nextInt();
-                                    if (posibildadVolver2 == 1) {
-                                        System.out.println("\n¿Qué otra gestíón de excursiones le gustaría hacer?");
-                                    } else {
-                                        continuarExcursion = false;
-                                        System.out.println("\n-------------------------------------");
-                                        System.out.println("     Volviendo al menú principal");
-                                        System.out.println("-------------------------------------\n");
-                                    }
-                                    break;
-                                case 0:
+                case 1:
+                    System.out.println("\n-------------------------------------------------------");
+                    System.out.println("     Entrando al menú de la gestión de excursiones");
+                    System.out.println("-------------------------------------------------------");
+                    System.out.println("\n¿Qué le gustaría hacer?");
+                    while (continuarExcursion) {
+                        System.out.println("1. Añadir excursión");
+                        System.out.println("2. Mostrar escursiones");
+                        System.out.println("0. Volver al menú principal");
+                        int opcionExcursion = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (opcionExcursion) {
+                            case 1:
+                                Datos.crearExcursion();
+                                System.out.println("¿Quieres realizar alguna otra gestión de las excursiones?");
+                                System.out.println("1. Si");
+                                System.out.println("2. No");
+                                System.out.println("(Cualquier otra opción tomará la opción 'No')");
+                                int posibildadVolver1 = scanner.nextInt();
+                                if (posibildadVolver1 == 1) {
+                                    System.out.println("\n¿Qué otra gestíón de excursiones le gustaría hacer?");
+                                } else {
                                     continuarExcursion = false;
                                     System.out.println("\n-------------------------------------");
                                     System.out.println("     Volviendo al menú principal");
                                     System.out.println("-------------------------------------\n");
-                                    break;
-                                default:
-                                    System.out.println("\n----------------------------------");
-                                    System.out.println("     Esta opción no es válida");
-                                    System.out.println("----------------------------------\n");
-                                    System.out.println("Por favor elija otra opción:");
-                                    break;
-                            }
+                                }
+                                break;
+                            case 2:
+                                Datos.mostrarExcursionesPorFechas(Datos.listaExcursiones);
+                                System.out.println("¿Quieres realizar alguna otra gestión de las excursiones?");
+                                System.out.println("1. Si");
+                                System.out.println("2. No");
+                                System.out.println("(Cualquier otra opción tomará la opción 'No')");
+                                int posibildadVolver2 = scanner.nextInt();
+                                if (posibildadVolver2 == 1) {
+                                    System.out.println("\n¿Qué otra gestíón de excursiones le gustaría hacer?");
+                                } else {
+                                    continuarExcursion = false;
+                                    System.out.println("\n-------------------------------------");
+                                    System.out.println("     Volviendo al menú principal");
+                                    System.out.println("-------------------------------------\n");
+                                }
+                                break;
+                            case 0:
+                                continuarExcursion = false;
+                                System.out.println("\n-------------------------------------");
+                                System.out.println("     Volviendo al menú principal");
+                                System.out.println("-------------------------------------\n");
+                                break;
+                            default:
+                                System.out.println("\n----------------------------------");
+                                System.out.println("     Esta opción no es válida");
+                                System.out.println("----------------------------------\n");
+                                System.out.println("Por favor elija otra opción:");
+                                break;
                         }
-                            System.out.println("¿Le gustaría realizar alguna otra gestión?");
-                            break;
-
+                    }
+                    System.out.println("¿Le gustaría realizar alguna otra gestión?");
+                    break;
                     case 2:
                         System.out.println("\n--------------------------------------------------");
                         System.out.println("     Entrando al menú de la gestión de socios");

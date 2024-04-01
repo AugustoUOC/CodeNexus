@@ -424,11 +424,11 @@ public class Datos {
                 switch (opcionSeguro) {
                     case 1:
                         if (!socioEstandar.getSeguroContratado().tipo) {
-                            socioEstandar.crearSeguro(new Seguro(socioEstandar.getSeguroContratado().tipo, precioSeguro));
+                            socioEstandar.getSeguroContratado().tipo = !socioEstandar.getSeguroContratado().tipo;
                             System.out.println("\nSe ha cambiado el tipo de seguro del socio llamado " + socioEstandar.getNombre() + " con número de socio " + idSocio + ".");
                             System.out.println("El nuevo seguro es: " + tipoComtrario + ".\n");
                         } else {
-                            socioEstandar.crearSeguro(new Seguro(!socioEstandar.getSeguroContratado().tipo, precioSeguro));
+                            socioEstandar.getSeguroContratado().tipo = !socioEstandar.getSeguroContratado().tipo;
                             System.out.println("\nSe ha cambiado el tipo de seguro del socio llamado " + socioEstandar.getNombre() + " con número de socio " + idSocio + ".");
                             System.out.println("El nuevo seguro es: " + tipoComtrario + ".\n");
                         }
@@ -472,42 +472,151 @@ public class Datos {
     }
     public static void mostrarSocio(List<Socio> socios) {
         Scanner scanner = new Scanner(System.in);
+        boolean continuarMuestreo = true;
+        int contadorMuestreo = 1;
+        boolean continuarMuestreoTipo = true;
+        int contadorMuestreoTipo = 1;
+        System.out.println("¿Qué listado de socios quieres?");
 
-        System.out.println("¿Qué socios deseas mostrar?");
-        System.out.println("1. Mostrar todos los socios");
-        System.out.println("2. Mostrar socios por tipo");
+        while (continuarMuestreo) {
+            System.out.println("1. Mostrar todos los socios");
+            System.out.println("2. Mostrar socios por tipo");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea
 
-        int opcion = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
-
-        switch (opcion) {
-            case 1:
-                System.out.println("Lista de todos los socios:");
-                for (Socio socio : socios) {
-                    System.out.println(socio);
-                }
-                break;
-            case 2:
-                System.out.println("¿Qué tipo de socio deseas mostrar?");
-                System.out.println("1. Estándar");
-                System.out.println("2. modelo.Federado");
-                System.out.println("3. modelo.Infantil");
-                int tipoSocio = scanner.nextInt();
-                scanner.nextLine(); // Consumir el salto de línea
-                System.out.println("Lista de socios de tipo " + tipoSocio + ":");
-
-                for (Socio socio : socios) {
-                    if (tipoSocio == 1 && socio instanceof Estandar) {
-                        System.out.println(socio);
-                    } else if (tipoSocio == 2 && socio instanceof Federado) {
-                        System.out.println(socio);
-                    } else if (tipoSocio == 3 && socio instanceof Infantil) {
-                        System.out.println(socio);
+            switch (opcion) {
+                case 1:
+                    continuarMuestreo = false;
+                    int contadorSocios = 0;
+                    System.out.println("\nLista de todos los socios:");
+                    System.out.println("--------------------------\n");
+                    for (Socio socio : socios) {
+                        contadorSocios = contadorSocios + 1;
+                        System.out.println(contadorSocios + " - " + socio + "\n");
                     }
-                }
-                break;
-            default:
-                System.out.println("Opción no válida.");
+                    if (contadorSocios == 0) {
+                        System.out.println("----------------------------------------------");
+                        System.out.println("     No hay socios agregados para mostrar");
+                        System.out.println("----------------------------------------------\n");
+                    }
+                    break;
+                case 2:
+                    System.out.println("¿Qué tipo de socio deseas mostrar?");
+                    continuarMuestreo = false;
+                    int contadorSociosTipo = 0;
+                    while (continuarMuestreoTipo) {
+                        System.out.println("1. Estándar");
+                        System.out.println("2. Federado");
+                        System.out.println("3. Infantil");
+                        int tipoSocio = scanner.nextInt();
+                        scanner.nextLine(); // Consumir el salto de línea
+                        switch (tipoSocio) {
+                            case 1:
+                                continuarMuestreoTipo = false;
+                                String nombreTipo1 = "estándar";
+                                System.out.println("\nLista de socios de tipo " + nombreTipo1 + ":");
+                                System.out.println("---------------------------------\n");
+                                for (Socio socio : socios) {
+                                    if (socio instanceof Estandar) {
+                                        contadorSociosTipo = contadorSociosTipo + 1;
+                                        System.out.println(contadorSociosTipo + " - " + socio + "\n");
+                                    }
+                                }
+                                break;
+                            case 2:
+                                continuarMuestreoTipo = false;
+                                String nombreTipo2 = "federado";
+                                System.out.println("\nLista de socios de tipo " + nombreTipo2 + ":");
+                                System.out.println("---------------------------------\n");
+                                for (Socio socio : socios) {
+                                    if (socio instanceof Federado) {
+                                        contadorSociosTipo = contadorSociosTipo + 1;
+                                        System.out.println(contadorSociosTipo + " - " + socio + "\n");
+                                    }
+                                }
+                                break;
+                            case 3:
+                                continuarMuestreoTipo = false;
+                                String nombreTipo = "infantil";
+                                System.out.println("\nLista de socios de tipo " + nombreTipo + ":");
+                                System.out.println("---------------------------------\n");
+                                for (Socio socio : socios) {
+                                    if (socio instanceof Infantil) {
+                                        contadorSociosTipo = contadorSociosTipo + 1;
+                                        System.out.println(contadorSociosTipo + " - " + socio + "\n");
+                                    }
+                                }
+                                break;
+                            default:
+                                if (contadorMuestreoTipo < 2) {
+                                    System.out.println("\n----------------------------------");
+                                    System.out.println("     Esta opción no es válida");
+                                    System.out.println("----------------------------------\n");
+                                    System.out.println("Lleva " + contadorMuestreoTipo + " de 3 intentos.\n");
+                                    System.out.println("Introduzca un opción de la lista:");
+                                    contadorMuestreoTipo = contadorMuestreoTipo + 1;
+                                    break;
+                                } else if (contadorMuestreoTipo == 2) {
+                                    System.out.println("\n----------------------------------");
+                                    System.out.println("     Esta opción no es válida");
+                                    System.out.println("----------------------------------\n");
+                                    System.out.println("Lleva " + contadorMuestreoTipo + " de 3 intentos.");
+                                    System.out.println("Al próximo error, se cancelará la función.\n");
+                                    System.out.println("Introduzca un opción de la lista:");
+                                    contadorMuestreoTipo = contadorMuestreoTipo + 1;
+                                    break;
+                                } else {
+                                    System.out.println("\n----------------------------------");
+                                    System.out.println("     Esta opción no es válida");
+                                    System.out.println("----------------------------------\n");
+                                    System.out.println("Ha consumido las tres posibilidades de elección de tipo de socio.\n");
+                                    continuarMuestreoTipo = false;
+                                    System.out.println("\n---------------------------------------------");
+                                    System.out.println("     No se ha podido realizar el listado");
+                                    System.out.println("---------------------------------------------\n");
+                                    contadorSociosTipo = -1;
+                                    break;
+                                }
+                        }
+                    }
+                    if (contadorSociosTipo == 0) {
+                        System.out.println("----------------------------------------------");
+                        System.out.println("     No hay socios agregados para mostrar");
+                        System.out.println("----------------------------------------------\n");
+                    }
+                    break;
+                default:
+                    if (contadorMuestreo < 2) {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Lleva " + contadorMuestreo + " de 3 intentos.\n");
+                        System.out.println("Introduzca un opción de la lista:");
+                        contadorMuestreo = contadorMuestreo + 1;
+                        break;
+                    } else if (contadorMuestreo == 2) {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Lleva " + contadorMuestreo + " de 3 intentos.");
+                        System.out.println("Al próximo error, se cancelará la función.\n");
+                        System.out.println("Introduzca un opción de la lista:");
+                        contadorMuestreo = contadorMuestreo + 1;
+                        break;
+                    } else {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Ha consumido las tres posibilidades de elección.");
+                        continuarMuestreo = false;
+                        System.out.println("\n---------------------------------------------");
+                        System.out.println("     No se ha podido realizar el listado");
+                        System.out.println("---------------------------------------------\n");
+                        break;
+                    }
+
+            }
+
         }
     }
     //Funcion para mostrar el Importe total de la Factura segun el Socio y las excursiones que tiene asignadas
@@ -540,7 +649,6 @@ public class Datos {
     }
 
     //Creo que está mal la funcion de abajo, porque si tiene varias escursiones, suma varias veces la cuota de socio??
-
     // Funcion para la logica de calcular la cuota + el coste de las inscripciones segun el Socio
     public static double calcularCosteExcursion(Socio socio, Excursion excursion) {
         double precio = 0;
@@ -924,15 +1032,15 @@ public class Datos {
 
         // Aplicar descuento según el tipo de socio
         switch (socio.getTipoSocio()) {
-            case "modelo.Estandar":
+            case "Estandar":
                 // Para socios estándar, se suma el precio de la inscripción con el precio del seguro
                 Estandar estandar = (Estandar) socio;
                 precioInscripcion += estandar.getSeguroContratado().getPrecio();
                 break;
-            case "modelo.Infantil":
+            case "Infantil":
                 // Para socios infantiles, no hay descuento ni otros cargos
                 break;
-            case "modelo.Federado":
+            case "Federado":
                 // Para socios federados, se aplica un descuento del 10%
                 precioInscripcion *= 0.9;
                 break;
