@@ -679,72 +679,247 @@ public class Datos {
     }
 
     //Métodos para inscripciones
-    public static void crearInscripcion(List<Socio> listaSocios, List<Excursion> excursiones, Date fechaInscripcion) {
+    public static void crearInscripcion(List<Socio> listaSocios, List<Excursion> listaExcursiones, Date fechaInscripcion) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese el número del socio en el que desea inscribirse (o pulse 0 para un nuevo socio): ");
-        int numeroSocioElegido = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
+        boolean continuarSocio = true;
+        System.out.print("¿Cuál es el socio que desea realizar la inscripción?\n");
+        int contadorSocios = 0;
+        int contadorVolver = 0;
+        int contadorFalloSocio = 1;
         Socio socioElegido = null;
-        if (numeroSocioElegido == 0) {
-            // Agregar un nuevo socio
-            Datos.crearSocio();
-            // Obtener el último socio agregado
-            socioElegido = listaSocios.get(listaSocios.size() - 1);
-            numeroSocioElegido = socioElegido.getIdSocio(); // Obtener el ID del nuevo socio
-        } else {
-            // Verificar si el número de socio elegido es válido
-            boolean numeroSocioValido = false;
+        while (continuarSocio) {
+            contadorSocios = 1;
             for (Socio socio : listaSocios) {
-                if (socio.getIdSocio() == numeroSocioElegido) {
-                    numeroSocioValido = true;
-                    socioElegido = socio;
-                    break;
-                }
+                System.out.println("ID: " + socio.getIdSocio() + " - Nombre: " + socio.getNombre());
+                contadorSocios = contadorSocios + 1;
+            }
+            if (contadorSocios == 1) {
+                System.out.println("\n----------------------------------------------------------------------");
+                System.out.println("     No hay ningún socio agrado que pueda realizar la inscripción");
+                System.out.println("----------------------------------------------------------------------\n");
+                System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?\n");
+                System.out.print("1. Agregar nuevo usuario\n");
+                System.out.print("2. Volver al menu anterior\n");
+                contadorVolver = contadorSocios + 1;
+            } else {
+                contadorVolver = contadorSocios + 1;
+                System.out.print(contadorSocios + ". Agregar nuevo usuario\n");
+                System.out.print(contadorVolver +  ". Volver al menu anterior\n");
+            }
+            int numeroSocioElegido = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea
 
-                if (!numeroSocioValido) {
-                    System.out.println("El número de socio ingresado no es válido. La inscripción no pudo ser realizada.");
+            if (numeroSocioElegido == contadorSocios) {
+                continuarSocio = false;
+                // Agregar un nuevo socio
+                Datos.crearSocio();
+                socioElegido = listaSocios.get(listaSocios.size() - 1);
+                numeroSocioElegido = socioElegido.getIdSocio(); // Obtener el ID del nuevo socio
+                break;
+            } else if (numeroSocioElegido < contadorSocios) {
+                continuarSocio = false;
+                // Verificar si el número de socio elegido es válido
+
+                for (Socio socio : listaSocios) {
+                    if (socio.getIdSocio() == numeroSocioElegido) {
+                        socioElegido = socio;
+                        break;
+                    }
+                }
+                break;
+            } else if (numeroSocioElegido == contadorVolver) {
+                continuarSocio= false;
+                System.out.println("\n-------------------------------------------------------");
+                System.out.println("     Volviendo al menú de gestión de inscripciones");
+                System.out.println("-------------------------------------------------------\n");
+                return;
+            } else {
+                if (contadorFalloSocio < 2) {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Lleva " + contadorFalloSocio + " de 3 intentos.\n");
+                    if (contadorSocios == 1) {
+                        System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?");
+                    } else {
+                        System.out.println("Elija un socio de la lista o agrega un nuevo usuario:");
+                    }
+                    contadorFalloSocio = contadorFalloSocio + 1;
+                } else if (contadorFalloSocio == 2) {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Lleva " + contadorFalloSocio + " de 3 intentos.");
+                    System.out.println("Al próximo error, se le anulará la posibilidad de elección de socio.\n");
+                    if (contadorSocios == 1) {
+                        System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?");
+                    } else {
+                        System.out.println("Elija un socio de la lista o agrega un nuevo usuario:");
+                    }
+                    contadorFalloSocio = contadorFalloSocio + 1;
+                } else {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Ha consumido las tres posibilidades de elección de socio.\nSe ha cancelado la inscripción.\n");
+                    continuarSocio= false;
+                    System.out.println("\n-------------------------------------------------------");
+                    System.out.println("     Volviendo al menú de gestión de inscripciones");
+                    System.out.println("-------------------------------------------------------\n");
                     return;
                 }
             }
         }
             // Mostrar los detalles del socio elegido y verificar si es correcto
-            System.out.println("Se ha encontrado al siguiente socio:");
+            System.out.println("Estos son los datos del socio que quiere hacer la inscripción:");
             System.out.println("Número de socio: " + socioElegido.getIdSocio());
             System.out.println("Nombre: " + socioElegido.getNombre());
-            System.out.println("¿Es este el socio en el que desea inscribirse? (s/n)");
-            String respuesta = scanner.nextLine();
+            boolean continuarConfirmacion = true;
+            System.out.println("¿Es este el socio que desea inscribirse?");
+            int contadorConfirmacion = 1;
+            while (continuarConfirmacion) {
+                System.out.println("1. Si");
+                System.out.println("2. No");
+                int opcionConfirmacion = scanner.nextInt();
+                scanner.nextLine();
+                // Asignar el nuevo seguro al socio
+                switch (opcionConfirmacion) {
+                    case 1:
 
-            if (!respuesta.equalsIgnoreCase("s")) {
-                System.out.println("Se ha cancelado la inscripción. La inscripción no pudo ser realizada.");
-                return;
-            }
-            // Mostrar un listado de excursiones disponibles con sus IDs y nombres
-            System.out.println("Excursiones disponibles:");
-            for (Excursion excursion : excursiones) {
-                System.out.println("ID: " + excursion.getIdExcursion() + " - Nombre: " + excursion.getDescripcion());
-            }
-
-            // Solicitar al usuario que elija el ID de la excursión
-            System.out.print("Ingrese el ID de la excursión en la que desea inscribirse: ");
-            int idExcursionElegida = scanner.nextInt();
-            scanner.nextLine();
-
-            // Verificar si el ID de la excursión elegida es válido
-            boolean idValido = false;
-            for (Excursion excursion : excursiones) {
-                if (excursion.getIdExcursion() == idExcursionElegida) {
-                    idValido = true;
-                    break;
+                        continuarConfirmacion = false;
+                        break;
+                    case 2:
+                        System.out.println("Se ha anulado la inscripción del socio llamado " + socioElegido.getNombre() + " con número de socio " + socioElegido.getIdSocio() + ".\n");
+                        continuarConfirmacion = false;
+                        System.out.println("\n-------------------------------------------------------");
+                        System.out.println("     Volviendo al menú de gestión de inscripciones");
+                        System.out.println("-------------------------------------------------------\n");
+                        return;
+                    default:
+                        if (contadorConfirmacion < 2) {
+                            System.out.println("\n----------------------------------");
+                            System.out.println("     Esta opción no es válida");
+                            System.out.println("----------------------------------\n");
+                            System.out.println("Lleva " + contadorConfirmacion + " de 3 intentos.\n");
+                            System.out.println("¿Es este el socio que desea inscribirse?");
+                            contadorConfirmacion = contadorConfirmacion + 1;
+                        } else if (contadorConfirmacion == 2) {
+                            System.out.println("\n----------------------------------");
+                            System.out.println("     Esta opción no es válida");
+                            System.out.println("----------------------------------\n");
+                            System.out.println("Lleva " + contadorConfirmacion + " de 3 intentos.");
+                            System.out.println("Al próximo error, se le anulará la inscripción.\n");
+                            System.out.println("¿Es este el socio que desea inscribirse?");
+                            contadorConfirmacion = contadorConfirmacion + 1;
+                        } else {
+                            System.out.println("\n----------------------------------");
+                            System.out.println("     Esta opción no es válida");
+                            System.out.println("----------------------------------\n");
+                            System.out.println("Ha consumido las tres posibilidades para el cambio de seguro.");
+                            System.out.println("Se ha anulado la inscripción del socio llamado " + socioElegido.getNombre() + " con número de socio " + socioElegido.getIdSocio() + ".\n");
+                            continuarConfirmacion = false;
+                            System.out.println("\n-------------------------------------------------------");
+                            System.out.println("     Volviendo al menú de gestión de inscripciones");
+                            System.out.println("-------------------------------------------------------\n");
+                            return;
+                        }
                 }
             }
 
-            if (!idValido) {
-                System.out.println("El ID de la excursión ingresada no es válido. La inscripción no pudo ser realizada.");
-                return;
+            // Mostrar un listado de excursiones disponibles con sus IDs y nombres
+            System.out.println("¿A qué excursión quiere el socio que se llama " + socioElegido.getNombre() + " inscribirse?");
+            boolean continuarExcursion = true;
+            int contadorExcursion;
+            int contadorVolverExcursion;
+            int contadorFalloExcursion = 1;
+            Excursion excursionElegida = null;
+            while(continuarExcursion) {
+                contadorExcursion = 1;
+                for (Excursion excursion : listaExcursiones) {
+                    System.out.println("ID: " + excursion.getIdExcursion() + " - Nombre: " + excursion.getDescripcion());
+                    contadorExcursion = contadorExcursion + 1;
+                }
+
+                if (contadorExcursion == 1) {
+                    System.out.print("No hay ningun socio agregado que pueda realizar la inscripción");
+                    System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?");
+                    System.out.print("1. Agregar nueva excursión");
+                    System.out.print("2. Volver al menu anterior");
+
+                    contadorVolverExcursion = contadorExcursion + 1;
+                } else {
+                    contadorVolverExcursion = contadorExcursion + 1;
+                    System.out.print(contadorExcursion + ". Agregar nueva excursión");
+                    System.out.print(contadorVolverExcursion + ". Volver al menu anterior");
+                }
+                int numeroExcursionElegida = scanner.nextInt();
+                scanner.nextLine(); // Consumir el salto de línea
+
+                if (numeroExcursionElegida == contadorExcursion) {
+                    continuarExcursion = false;
+                    // Agregar una nueva excursión
+                    Datos.crearExcursion();
+                    excursionElegida = listaExcursiones.get(listaExcursiones.size() - 1);
+                    numeroExcursionElegida = excursionElegida.getIdExcursion(); // Obtener la ID de la nueva excursión
+                    break;
+                } else if (numeroExcursionElegida < contadorExcursion) {
+                    continuarExcursion = false;
+                    // Verificar si el número de socio elegido es válido
+
+                    for (Excursion excursion : listaExcursiones) {
+                        if (excursion.getIdExcursion() == numeroExcursionElegida) {
+                            excursionElegida = excursion;
+                            break;
+                        }
+                    }
+                    break;
+                } else if (numeroExcursionElegida == contadorVolverExcursion) {
+                    continuarExcursion= false;
+                    System.out.println("\n-------------------------------------------------------");
+                    System.out.println("     Volviendo al menú de gestión de inscripciones");
+                    System.out.println("-------------------------------------------------------\n");
+                    return;
+                } else {
+                    if (contadorFalloExcursion < 2) {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Lleva " + contadorFalloExcursion + " de 3 intentos.\n");
+                        if (contadorExcursion == 1) {
+                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?");
+                        } else {
+                            System.out.println("Elija una excursión de la lista o agrega una nueva:");
+                        }
+                        contadorFalloExcursion = contadorFalloExcursion + 1;
+                    } else if (contadorFalloExcursion== 2) {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Lleva " + contadorFalloExcursion + " de 3 intentos.");
+                        System.out.println("Al próximo error, se anulará la eleción de excursión.\n");
+                        if (contadorExcursion == 1) {
+                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?");
+                        } else {
+                            System.out.println("Elija una excursión de la lista o agrega una nueva:");
+                        }
+                        contadorFalloExcursion = contadorFalloExcursion + 1;
+                    } else {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Ha consumido las tres posibilidades de elección de excursión.\nSe ha camcelado la inscripción.\n");
+                        continuarSocio= false;
+                        System.out.println("\n-------------------------------------------------------");
+                        System.out.println("     Volviendo al menú de gestión de inscripciones");
+                        System.out.println("-------------------------------------------------------\n");
+                        return;
+                    }
+                }
             }
+
             Date fechaActual = new Date();
             // Crear la inscripción con el ID de la excursión elegida
-            Inscripcion inscripcion = new Inscripcion(++contadorInscripciones, socioElegido.getIdSocio(), idExcursionElegida, fechaActual);
+            Inscripcion inscripcion = new Inscripcion(++contadorInscripciones, socioElegido.getIdSocio(), excursionElegida.getIdExcursion(), fechaActual);
             listaInscripciones.add(inscripcion);
         System.out.println("\n--------------------------------------------");
         System.out.println("     Inscripción agregada correctamente");
