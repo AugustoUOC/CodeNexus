@@ -690,14 +690,14 @@ public class Datos {
         while (continuarSocio) {
             contadorSocios = 1;
             for (Socio socio : listaSocios) {
-                System.out.println("ID: " + socio.getIdSocio() + " - Nombre: " + socio.getNombre());
+                System.out.println(contadorSocios +". ID: " + socio.getIdSocio() + " - Nombre: " + socio.getNombre());
                 contadorSocios = contadorSocios + 1;
             }
-            if (contadorSocios == 1) {
-                System.out.println("\n----------------------------------------------------------------------");
-                System.out.println("     No hay ningún socio agrado que pueda realizar la inscripción");
-                System.out.println("----------------------------------------------------------------------\n");
-                System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?\n");
+            if (contadorSocios == 1 && contadorFalloSocio == 1) {
+                System.out.println("\n------------------------------------------------------------------------");
+                System.out.println("     No hay ningún socio agregado que pueda realizar la inscripción");
+                System.out.println("------------------------------------------------------------------------\n");
+                System.out.print("¿Quieres agregar un nuevo usuario o volver al menu anterior?\n");
                 System.out.print("1. Agregar nuevo usuario\n");
                 System.out.print("2. Volver al menu anterior\n");
                 contadorVolver = contadorSocios + 1;
@@ -740,9 +740,9 @@ public class Datos {
                     System.out.println("----------------------------------\n");
                     System.out.println("Lleva " + contadorFalloSocio + " de 3 intentos.\n");
                     if (contadorSocios == 1) {
-                        System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?");
+                        System.out.print("Quieres agregar un nuevo socio o volver al menu anterior?\n");
                     } else {
-                        System.out.println("Elija un socio de la lista o agrega un nuevo usuario:");
+                        System.out.println("Elija un socio de la lista o agrega un nuevo socio:");
                     }
                     contadorFalloSocio = contadorFalloSocio + 1;
                 } else if (contadorFalloSocio == 2) {
@@ -752,9 +752,9 @@ public class Datos {
                     System.out.println("Lleva " + contadorFalloSocio + " de 3 intentos.");
                     System.out.println("Al próximo error, se le anulará la posibilidad de elección de socio.\n");
                     if (contadorSocios == 1) {
-                        System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?");
+                        System.out.print("Quieres agregar un nuevo socio o volver al menu anterior?\n");
                     } else {
-                        System.out.println("Elija un socio de la lista o agrega un nuevo usuario:");
+                        System.out.println("Elija un socio de la lista o agrega un nuevo socio:");
                     }
                     contadorFalloSocio = contadorFalloSocio + 1;
                 } else {
@@ -772,8 +772,8 @@ public class Datos {
         }
             // Mostrar los detalles del socio elegido y verificar si es correcto
             System.out.println("Estos son los datos del socio que quiere hacer la inscripción:");
-            System.out.println("Número de socio: " + socioElegido.getIdSocio());
-            System.out.println("Nombre: " + socioElegido.getNombre());
+            System.out.println(" - Número de socio: " + socioElegido.getIdSocio() + ".");
+            System.out.println(" - Nombre: " + socioElegido.getNombre() + ".\n");
             boolean continuarConfirmacion = true;
             System.out.println("¿Es este el socio que desea inscribirse?");
             int contadorConfirmacion = 1;
@@ -836,21 +836,22 @@ public class Datos {
             while(continuarExcursion) {
                 contadorExcursion = 1;
                 for (Excursion excursion : listaExcursiones) {
-                    System.out.println("ID: " + excursion.getIdExcursion() + " - Nombre: " + excursion.getDescripcion());
+                    System.out.println(contadorExcursion + ". ID: " + excursion.getIdExcursion() + " - Nombre: " + excursion.getDescripcion());
                     contadorExcursion = contadorExcursion + 1;
                 }
 
-                if (contadorExcursion == 1) {
-                    System.out.print("No hay ningun socio agregado que pueda realizar la inscripción");
-                    System.out.print("Quieres agregar un nuevo usuario o volver al menu anterior?");
-                    System.out.print("1. Agregar nueva excursión");
-                    System.out.print("2. Volver al menu anterior");
-
+                if (contadorExcursion == 1 && contadorFalloExcursion == 1) {
+                    System.out.println("\n----------------------------------------------------------------------------");
+                    System.out.println("     No hay ninguna excursión agregada a la que realizar la inscripción");
+                    System.out.println("----------------------------------------------------------------------------\n");
+                    System.out.print("Quieres agregar un nueva excursión o volver al menu anterior?\n");
+                    System.out.print("1. Agregar nueva excursión\n");
+                    System.out.print("2. Volver al menu anterior\n");
                     contadorVolverExcursion = contadorExcursion + 1;
                 } else {
                     contadorVolverExcursion = contadorExcursion + 1;
-                    System.out.print(contadorExcursion + ". Agregar nueva excursión");
-                    System.out.print(contadorVolverExcursion + ". Volver al menu anterior");
+                    System.out.print(contadorExcursion + ". Agregar nueva excursión\n");
+                    System.out.print(contadorVolverExcursion + ". Volver al menu anterior\n");
                 }
                 int numeroExcursionElegida = scanner.nextInt();
                 scanner.nextLine(); // Consumir el salto de línea
@@ -886,7 +887,7 @@ public class Datos {
                         System.out.println("----------------------------------\n");
                         System.out.println("Lleva " + contadorFalloExcursion + " de 3 intentos.\n");
                         if (contadorExcursion == 1) {
-                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?");
+                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?\n");
                         } else {
                             System.out.println("Elija una excursión de la lista o agrega una nueva:");
                         }
@@ -898,7 +899,7 @@ public class Datos {
                         System.out.println("Lleva " + contadorFalloExcursion + " de 3 intentos.");
                         System.out.println("Al próximo error, se anulará la eleción de excursión.\n");
                         if (contadorExcursion == 1) {
-                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?");
+                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?\n");
                         } else {
                             System.out.println("Elija una excursión de la lista o agrega una nueva:");
                         }
