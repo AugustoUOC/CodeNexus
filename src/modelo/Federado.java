@@ -4,8 +4,7 @@ package modelo;
 public class Federado extends Socio {
     private String nif;
     public Federacion federacion;
-    private double descuentoExcursion;
-    private double descuentoCuota;
+
 
     // Constructor vacío
     public Federado() {
@@ -13,10 +12,9 @@ public class Federado extends Socio {
 
     // Constructor con todos los atributos
     public Federado(int idSocio, String nombre, Federacion federacion, String nif) {
-        super(idSocio, nombre, "modelo.Federado");
+        super(idSocio, nombre, "Federado");
         this.federacion = federacion;
         this.nif = nif;
-
 
     }
 
@@ -38,35 +36,11 @@ public class Federado extends Socio {
         this.federacion = federacion;
     }
 
-    // Getter y setter para el descuento en excursiones
-    public double getDescuentoExcursion() {
-        return descuentoExcursion;
-    }
-
-    public void setDescuentoExcursion(double descuentoExcursion) {
-        this.descuentoExcursion = descuentoExcursion;
-    }
-
-    // Getter y setter para el descuento en la cuota mensual
-    public double getDescuentoCuota() {
-        return descuentoCuota;
-    }
-
-    public void setDescuentoCuota(double descuentoCuota) {
-        this.descuentoCuota = descuentoCuota;
-    }
-
     // Método toString para imprimir los detalles del socio federado
     @Override
     public String toString() {
-        return "modelo.Federado{" +
-                "idSocio='" + getIdSocio() + '\'' +
-                ", nombre='" + getNombre() + '\'' +
-                ", tipoSocio='" + getTipoSocio() + '\'' +
-                ", federacion=" + federacion +
-                ", nif='" + nif + '\'' +
-                ", descuentoExcursion=" + descuentoExcursion +
-                ", descuentoCuota=" + descuentoCuota +
-                '}';
+        return "Socio con id número: " +getIdSocio() + ", llamado: " +  getNombre() + ", con NIF: " + nif + ".\n" +
+                "Pertenece a la federación: " +  federacion.getNombre() + ".";
+
     }
 }

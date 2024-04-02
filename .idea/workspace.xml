@@ -4,21 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Clases en patrón MVC">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Test añadidos en la clase testDatos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Datos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Estandar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Estandar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Excursion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Excursion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Federado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Infantil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Infantil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Inscripcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Inscripcion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Seguro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Seguro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Socio.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/modelo/Socio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeNexus/vista/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/modelo/DatosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test/modelo/DatosTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Datos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,14 +53,56 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.DatosTest.calcularImporteTotal.executor": "Run",
+    "JUnit.DatosTest.mostrarFactura.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Marc",
+    "git-widget-placeholder": "Alejandro",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus",
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="DatosTest.calcularImporteTotal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CodeNexus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="modelo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="modelo" />
+      <option name="MAIN_CLASS_NAME" value="modelo.DatosTest" />
+      <option name="METHOD_NAME" value="calcularImporteTotal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatosTest.mostrarFactura" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CodeNexus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="modelo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="modelo" />
+      <option name="MAIN_CLASS_NAME" value="modelo.DatosTest" />
+      <option name="METHOD_NAME" value="mostrarFactura" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DatosTest.mostrarFactura" />
+        <item itemvalue="JUnit.DatosTest.calcularImporteTotal" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -95,11 +127,20 @@
       <option name="project" value="LOCAL" />
       <updated>1711046215748</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Test añadidos en la clase testDatos">
+      <option name="closed" value="true" />
+      <created>1712046382884</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712046382884</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clases en patrón MVC" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clases en patrón MVC" />
+    <MESSAGE value="Test añadidos en la clase testDatos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test añadidos en la clase testDatos" />
   </component>
 </project>

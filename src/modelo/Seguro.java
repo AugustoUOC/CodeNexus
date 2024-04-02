@@ -34,9 +34,8 @@ public class Seguro {
     // Método toString para imprimir los detalles del seguro
     @Override
     public String toString() {
-        return "modelo.Seguro{" +
-                "tipo=" + (tipo ? "Completo" : "Básico") +
-                ", precio=" + precio +
-                '}';
+        return "El seguro es " + (tipo ? "Completo" : "Básico") +
+                "y tiene un precio de " + precio +
+                " euros.";
     }
 }
