@@ -100,8 +100,6 @@ public class Datos {
     }
 
 
-
-
     //Métodos para Socios
     public static void borrarSocio(List<Socio> socios, List<Inscripcion> listaInscripciones) {
         if (socios.isEmpty()) {
@@ -172,6 +170,7 @@ public class Datos {
         }
     }
     public static void crearSocio() {
+
         Socio nuevoSocio = null; // Inicialización por defecto
         Scanner scanner = new Scanner(System.in);
         boolean continuarTipo = true;
@@ -179,6 +178,7 @@ public class Datos {
         String nombre = scanner.nextLine();
         System.out.println("Seleccione el tipo de socio:");
         int contadorTipo = 1;
+        double precioSeguro = 0;
         var tipoSocio = "1";
         System.out.println("1. Socio Estandar\n2. Socio Federado\n3. Socio Infantil");
         while (continuarTipo) {
@@ -205,11 +205,13 @@ public class Datos {
                             case 1:
                                 continuarSeguro = false;
                                 System.out.println("Se ha seleccionado el seguro básico.");
+                                precioSeguro = 10;
                                 break;
                             case 2:
                                 seguro = true;
                                 continuarSeguro = false;
                                 System.out.println("Se ha seleccionado el seguro completo.");
+                                precioSeguro = 20;
                                 break;
                             default:
                                 if (contadorSeguro < 2) {
@@ -233,12 +235,13 @@ public class Datos {
                                     System.out.println("----------------------------------\n");
                                     System.out.println("Ha consumido las tres posibilidades de elección de seguro.\n");
                                     System.out.println("Se ha asignado el seguro básico por defecto.");
+                                    precioSeguro = 10;
                                     continuarSeguro = false;
                                 }
                                 break;
                         }
                     }
-                    Seguro seguroEstandar = new Seguro(seguro, 0.0);
+                    Seguro seguroEstandar = new Seguro(seguro, precioSeguro);
                     nuevoSocio = new Estandar(++contadorSocios, nombre, nifEstandar, seguroEstandar);
                     break;
                 case "2":
@@ -402,15 +405,19 @@ public class Datos {
             // Mostrar el seguro actual del socio
             String tipoSeguro = "Básico";
             String tipoComtrario = "Completo";
+            double precioBasico = 10;
+            double precioCompleto = 20;
             double precioSeguro = socioEstandar.getSeguroContratado().getPrecio();
+            double precioContrario = 20;
             if (socioEstandar.getSeguroContratado().tipo) {
                 tipoSeguro = "Completo";
                 tipoComtrario = "Básico";
+                precioContrario = precioBasico;
             } else {
                 tipoSeguro = "Básico";
                 tipoComtrario = "Completo";
             }
-            System.out.println("El id " + idSocio + "pertenece al socio que se llama " + socioEstandar.getNombre() + ".");
+            System.out.println("El id " + idSocio + " pertenece al socio que se llama " + socioEstandar.getNombre() + ".");
             System.out.println("Su seguro actual es: " + tipoSeguro + ".");
             boolean cambiarTipoSeguro = true;
             System.out.println("\n¿Quieres cambiar el seguro de " + tipoSeguro + " a " + tipoComtrario + "?");
@@ -425,12 +432,14 @@ public class Datos {
                     case 1:
                         if (!socioEstandar.getSeguroContratado().tipo) {
                             socioEstandar.getSeguroContratado().tipo = !socioEstandar.getSeguroContratado().tipo;
+                            socioEstandar.getSeguroContratado().precio = precioContrario;
                             System.out.println("\nSe ha cambiado el tipo de seguro del socio llamado " + socioEstandar.getNombre() + " con número de socio " + idSocio + ".");
-                            System.out.println("El nuevo seguro es: " + tipoComtrario + ".\n");
+                            System.out.println("El nuevo seguro es: " + tipoComtrario + " y su precio son: " + precioContrario + " euros.\n");
                         } else {
                             socioEstandar.getSeguroContratado().tipo = !socioEstandar.getSeguroContratado().tipo;
+                            socioEstandar.getSeguroContratado().precio = precioContrario;
                             System.out.println("\nSe ha cambiado el tipo de seguro del socio llamado " + socioEstandar.getNombre() + " con número de socio " + idSocio + ".");
-                            System.out.println("El nuevo seguro es: " + tipoComtrario + ".\n");
+                            System.out.println("El nuevo seguro es: " + tipoComtrario + " y su precio son: " + precioContrario + " euros.\n");
                         }
                         cambiarTipoSeguro = false;
                         break;
@@ -481,20 +490,21 @@ public class Datos {
         while (continuarMuestreo) {
             System.out.println("1. Mostrar todos los socios");
             System.out.println("2. Mostrar socios por tipo");
+            System.out.println("0. Volver al menú anterior");
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea
 
             switch (opcion) {
                 case 1:
                     continuarMuestreo = false;
-                    int contadorSocios = 0;
+                    int contadorMostrarSocios = 0;
                     System.out.println("\nLista de todos los socios:");
                     System.out.println("--------------------------\n");
                     for (Socio socio : socios) {
-                        contadorSocios = contadorSocios + 1;
-                        System.out.println(contadorSocios + " - " + socio + "\n");
+                        contadorMostrarSocios = contadorMostrarSocios + 1;
+                        System.out.println(contadorMostrarSocios + " - " + socio + "\n");
                     }
-                    if (contadorSocios == 0) {
+                    if (contadorMostrarSocios == 0) {
                         System.out.println("----------------------------------------------");
                         System.out.println("     No hay socios agregados para mostrar");
                         System.out.println("----------------------------------------------\n");
@@ -585,6 +595,11 @@ public class Datos {
                         System.out.println("----------------------------------------------\n");
                     }
                     break;
+                case 0:
+                    continuarMuestreo = false;
+                    System.out.println("\n------------------------------------------------");
+                    System.out.println("     Volviendo al menú de gestión de socios");
+                    System.out.println("------------------------------------------------\n");
                 default:
                     if (contadorMuestreo < 2) {
                         System.out.println("\n----------------------------------");
@@ -622,17 +637,45 @@ public class Datos {
     //Funcion para mostrar el Importe total de la Factura segun el Socio y las excursiones que tiene asignadas
     public static void mostrarFacturaTotal(List<Socio> listaSocios, List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
         Scanner scanner = new Scanner(System.in);
+        boolean continuarFactura = true;
+        int contadorFallos = 1;
         System.out.println("Ingrese el ID del socio para mostrar su factura:");
-        int idSocio = scanner.nextInt();
-        Socio socioFactura = obtenerSocioPorId(idSocio, listaSocios);
-        if (socioFactura == null) {
-            System.out.println("Socio no encontrado");
-        } else {
-            System.out.println("Id del Socio: " + socioFactura.getIdSocio());
-            System.out.println("Nombre del Socio: " + socioFactura.getNombre());
-            System.out.println("\nFactura mensual del socio numero: " + socioFactura.getIdSocio());
-            mostrarFactura(socioFactura);
-
+        while (continuarFactura) {
+            int idSocio = scanner.nextInt();
+            if (idSocio == contadorSocios) {
+                continuarFactura = false;
+                Socio socioFactura = obtenerSocioPorId(idSocio, listaSocios);
+                System.out.println("Id del Socio: " + socioFactura.getIdSocio());
+                System.out.println("Nombre del Socio: " + socioFactura.getNombre());
+                System.out.println("\nFactura mensual del socio numero: " + socioFactura.getIdSocio());
+                mostrarFactura(socioFactura);
+                System.out.println(mostrarFactura(socioFactura));
+                break;
+            } else {
+                if (contadorFallos < 2) {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Lleva " + contadorFallos + " de 3 intentos.\n");
+                    System.out.println("Introduzca un socio de la lista.");
+                    contadorFallos = contadorFallos + 1;
+                } else if (contadorFallos == 2) {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Lleva " + contadorFallos + " de 3 intentos.");
+                    System.out.println("Al próximo error, no se mostrará la factura mensual.\n");
+                    System.out.println("Introduzca un socio de la lista.");
+                    contadorFallos = contadorFallos + 1;
+                } else {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Ha consumido las tres posibilidades de mostrar la factura mensual.");
+                    System.out.println("Se ha anulado la muestra de la factura.\n");
+                    continuarFactura = false;
+                }
+            }
         }
     }
     public static double mostrarFactura (Socio socio){
@@ -643,25 +686,28 @@ public class Datos {
             }
         }
         double coste = 0;
+        double costeExcursiones = 0;
         for (Inscripcion inscripcion : inscripciones) {
             for (Excursion excursion : listaExcursiones) {
                 if (inscripcion.getIdExcursion() == excursion.getIdExcursion()) {
-                    coste += calcularCosteExcursion(socio, excursion);
+                    costeExcursiones += calcularCosteExcursion(socio, excursion);
                 }
             }
         }
+        coste = calcularCuota(socio) + costeExcursiones;
         return coste;
+
     }
     // Funcion para la logica de calcular la cuota + el coste de las inscripciones segun el Socio
     public static double calcularCosteExcursion(Socio socio, Excursion excursion) {
         double precio = 0;
         if (socio instanceof Estandar) {
-            precio = calcularCuota(socio) + excursion.getPrecioInscripcion() + ((Estandar) socio).getSeguroContratado().getPrecio();
+            precio = excursion.getPrecioInscripcion() + ((Estandar) socio).getSeguroContratado().getPrecio();
         } else if (socio instanceof Federado) {
-            double precioTemporal = calcularCuota(socio) + excursion.getPrecioInscripcion();
+            double precioTemporal = excursion.getPrecioInscripcion();
             precio = precioTemporal * 0.9;
         } else if (socio instanceof Infantil) {
-            precio = calcularCuota(socio) + excursion.getPrecioInscripcion();
+            precio =  excursion.getPrecioInscripcion();
         }
         return precio;
     }
@@ -679,6 +725,7 @@ public class Datos {
             cuotaBase *= 0.5;
         }
         return cuotaBase;
+
     }
 
     //Métodos para inscripciones
@@ -686,45 +733,47 @@ public class Datos {
         Scanner scanner = new Scanner(System.in);
         boolean continuarSocio = true;
         System.out.print("¿Cuál es el socio que desea realizar la inscripción?\n");
-        int contadorSocios = 0;
+        int contadorSociosInscripcion = 0;
         int contadorVolver = 0;
         int contadorFalloSocio = 1;
         Socio socioElegido = null;
         while (continuarSocio) {
-            contadorSocios = 1;
+            contadorSociosInscripcion = 1;
             for (Socio socio : listaSocios) {
-                System.out.println(contadorSocios +". ID: " + socio.getIdSocio() + " - Nombre: " + socio.getNombre());
-                contadorSocios = contadorSocios + 1;
+                System.out.println(contadorSociosInscripcion +". ID: " + socio.getIdSocio() + " - Nombre: " + socio.getNombre());
+                contadorSociosInscripcion = contadorSociosInscripcion + 1;
             }
-            if (contadorSocios == 1 && contadorFalloSocio == 1) {
+            if (contadorSociosInscripcion == 1 && contadorFalloSocio == 1) {
                 System.out.println("\n------------------------------------------------------------------------");
                 System.out.println("     No hay ningún socio agregado que pueda realizar la inscripción");
                 System.out.println("------------------------------------------------------------------------\n");
                 System.out.print("¿Quieres agregar un nuevo usuario o volver al menu anterior?\n");
                 System.out.print("1. Agregar nuevo usuario\n");
                 System.out.print("2. Volver al menu anterior\n");
-                contadorVolver = contadorSocios + 1;
+                contadorVolver = contadorSociosInscripcion + 1;
             } else {
-                contadorVolver = contadorSocios + 1;
-                System.out.print(contadorSocios + ". Agregar nuevo usuario\n");
+                contadorVolver = contadorSociosInscripcion + 1;
+                System.out.print(contadorSociosInscripcion + ". Agregar nuevo usuario\n");
                 System.out.print(contadorVolver +  ". Volver al menu anterior\n");
             }
             int numeroSocioElegido = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea
 
-            if (numeroSocioElegido == contadorSocios) {
+            if (numeroSocioElegido == contadorSociosInscripcion) {
                 continuarSocio = false;
                 // Agregar un nuevo socio
                 Datos.crearSocio();
                 socioElegido = listaSocios.get(listaSocios.size() - 1);
                 numeroSocioElegido = socioElegido.getIdSocio(); // Obtener el ID del nuevo socio
                 break;
-            } else if (numeroSocioElegido < contadorSocios) {
+            } else if (numeroSocioElegido < contadorSociosInscripcion) {
                 continuarSocio = false;
                 // Verificar si el número de socio elegido es válido
-
+                contadorSociosInscripcion = 0;
                 for (Socio socio : listaSocios) {
-                    if (socio.getIdSocio() == numeroSocioElegido) {
+                    contadorSociosInscripcion = contadorSociosInscripcion + 1;
+                    if (numeroSocioElegido == contadorSociosInscripcion){
+                        numeroSocioElegido = socio.getIdSocio();
                         socioElegido = socio;
                         break;
                     }
@@ -742,7 +791,7 @@ public class Datos {
                     System.out.println("     Esta opción no es válida");
                     System.out.println("----------------------------------\n");
                     System.out.println("Lleva " + contadorFalloSocio + " de 3 intentos.\n");
-                    if (contadorSocios == 1) {
+                    if (contadorSociosInscripcion == 1) {
                         System.out.print("Quieres agregar un nuevo socio o volver al menu anterior?\n");
                     } else {
                         System.out.println("Elija un socio de la lista o agrega un nuevo socio:");
@@ -754,7 +803,7 @@ public class Datos {
                     System.out.println("----------------------------------\n");
                     System.out.println("Lleva " + contadorFalloSocio + " de 3 intentos.");
                     System.out.println("Al próximo error, se le anulará la posibilidad de elección de socio.\n");
-                    if (contadorSocios == 1) {
+                    if (contadorSociosInscripcion == 1) {
                         System.out.print("Quieres agregar un nuevo socio o volver al menu anterior?\n");
                     } else {
                         System.out.println("Elija un socio de la lista o agrega un nuevo socio:");
@@ -774,7 +823,8 @@ public class Datos {
             }
         }
             // Mostrar los detalles del socio elegido y verificar si es correcto
-            System.out.println("Estos son los datos del socio que quiere hacer la inscripción:");
+        System.out.println("\n"  + socioElegido);
+            System.out.println("\nEstos son los datos del socio que quiere hacer la inscripción:");
             System.out.println(" - Número de socio: " + socioElegido.getIdSocio() + ".");
             System.out.println(" - Nombre: " + socioElegido.getNombre() + ".\n");
             boolean continuarConfirmacion = true;
@@ -929,58 +979,131 @@ public class Datos {
         System.out.println("     Inscripción agregada correctamente");
         System.out.println("--------------------------------------------\n\n" + inscripcion + "\n");
         }
-
     public static void eliminarInscripcion(List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
         Scanner scanner = new Scanner(System.in);
-        mostrarInscripcionesBorrables(listaExcursiones,listaInscripciones);
-        System.out.println("Elige al ID de la Inscripcion que quieres Eliminar");
-        int idParaBorrar = scanner.nextInt();
-        Inscripcion inscripcionParaBorrar = obtenerInscripcionPorId(idParaBorrar, listaInscripciones);
-        listaInscripciones.remove(inscripcionParaBorrar);
-    }
-    //funcion para mostrar la lista de inscripciones que cumplen la condicion de que la fecha
-    // sea anterior a la fecha de la excursion en el metodo eliminarInscripciones
-    public static void mostrarInscripcionesBorrables(List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
         Date fechaActual = new Date(); //fecha actual
-        ArrayList<Inscripcion> listaInscripcionesBorrables = new ArrayList<Inscripcion>(); // nueva lista
-        int contadorExcursionesBorrables = 1;
-        for(Inscripcion inscripcion : listaInscripciones) {
-            int idExcursion = inscripcion.getIdExcursion();
-            Excursion excursion = obtenerExcursionPorId(idExcursion, listaExcursiones);
-            if (fechaActual.before(excursion.getFechaExcursion())) {
-                listaInscripcionesBorrables.add(inscripcion);
-                System.out.println(contadorExcursionesBorrables + ". " + inscripcion);
-                contadorExcursionesBorrables = contadorExcursionesBorrables + 1;
+        boolean continuarEliminacion = true;
+        int contadorFallos = 1;
+        System.out.println("Elige al ID de la Inscripcion que quieres eliminar:");
+        while (continuarEliminacion) {
+            int contadorExcursionesBorrables = 1;
+            for(Inscripcion inscripcion : listaInscripciones) {
+                int idExcursion = inscripcion.getIdExcursion();
+                Excursion excursion = obtenerExcursionPorId(idExcursion, listaExcursiones);
+                if (fechaActual.before(excursion.getFechaExcursion())) {
+                    System.out.println("\n" + contadorExcursionesBorrables + ". " + inscripcion);
+                    contadorExcursionesBorrables = contadorExcursionesBorrables + 1;
+                }
+            }
+            if (contadorExcursionesBorrables == 1) {
+                System.out.println("\n-----------------------------------------------------------");
+                System.out.println("     No hay inscripciones que puedan ser eliminadas.");
+                System.out.println("-----------------------------------------------------------\n" );
+                return;
+            }
+            int idSocio = scanner.nextInt();
+            scanner.nextLine();
+            if (idSocio <= contadorExcursionesBorrables ) {
+                continuarEliminacion = false;
+                Inscripcion inscripcionParaBorrar = obtenerInscripcionPorId(idSocio, listaInscripciones);
+                listaInscripciones.remove(inscripcionParaBorrar);
+                System.out.println("\n----------------------------------------------------------");
+                System.out.println("     Número de inscripcion " + inscripcionParaBorrar.getIdInscripcion() + " eliminado correctamente");
+                System.out.println("----------------------------------------------------------\n\n" );
+                break;
+            } else {
+                if (contadorFallos < 2) {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Lleva " + contadorFallos + " de 3 intentos.\n");
+                    System.out.println("Introduzca un socio de la lista.");
+                    contadorFallos = contadorFallos + 1;
+                } else if (contadorFallos == 2) {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Lleva " + contadorFallos + " de 3 intentos.");
+                    System.out.println("Al próximo error, no eliminará la inscripción.\n");
+                    System.out.println("Introduzca un socio de la lista.");
+                    contadorFallos = contadorFallos + 1;
+                } else {
+                    System.out.println("\n----------------------------------");
+                    System.out.println("     Esta opción no es válida");
+                    System.out.println("----------------------------------\n");
+                    System.out.println("Ha consumido las tres posibilidades de elegir socio.");
+                    System.out.println("Se ha anulado la posibilidad de eliminar la inscripción.\n");
+                    continuarEliminacion = false;
+                }
             }
         }
     }
 
     public static void mostrarInscripcion(List<Inscripcion> listaInscripciones, List<Socio> listaSocios,List<Excursion> listaExcursiones) {
         Scanner scanner = new Scanner(System.in);
+        boolean continuarMuestreo = true;
+        int contadorMuestreo = 1;
+        boolean continuarMuestreoTipo = true;
+        int contadorMuestreoTipo = 1;
         System.out.println("Seleccione una opción:");
-        System.out.println("1. No aplicar filtros");
-        System.out.println("2. Aplicar filtro por socio");
-        System.out.println("3. Aplicar filtro por fecha");
-        System.out.println("4. Aplicar ambos filtros");
-        int opcion = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
+        while (continuarMuestreo) {
+            System.out.println("1. No aplicar filtros");
+            System.out.println("2. Aplicar filtro por socio");
+            System.out.println("3. Aplicar filtro por fecha");
+            System.out.println("4. Aplicar ambos filtros");
+            System.out.println("0. Volver al menú anterior");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea
 
-        switch (opcion) {
-            case 1:
-                mostrarTodasLasInscripciones(listaInscripciones, listaSocios, listaExcursiones);
-                break;
-            case 2:
-                mostrarInscripcionPorSocio(listaInscripciones, listaSocios, listaExcursiones);
-                break;
-            case 3:
-                mostrarInscripcionPorFecha(listaInscripciones, listaSocios, listaExcursiones);
-                break;
-            case 4:
-                mostrarInscripcionPorSocioYFecha(listaInscripciones, listaSocios, listaExcursiones);
-                break;
-            default:
-                System.out.println("Opción no válida.");
-                break;
+            switch (opcion) {
+                case 1:
+                    mostrarTodasLasInscripciones(listaInscripciones, listaSocios, listaExcursiones);
+                    break;
+                case 2:
+                    mostrarInscripcionPorSocio(listaInscripciones, listaSocios, listaExcursiones);
+                    break;
+                case 3:
+                    mostrarInscripcionPorFecha(listaInscripciones, listaSocios, listaExcursiones);
+                    break;
+                case 4:
+                    mostrarInscripcionPorSocioYFecha(listaInscripciones, listaSocios, listaExcursiones);
+                    break;
+                case 0:
+                    continuarMuestreo = false;
+                    System.out.println("\n-------------------------------------------------------");
+                    System.out.println("     Volviendo al menú de gestión de inscripciones");
+                    System.out.println("-------------------------------------------------------\n");
+                    break;
+                default:
+                    if (contadorMuestreo < 2) {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Lleva " + contadorMuestreo + " de 3 intentos.\n");
+                        System.out.println("Introduzca un opción de la lista:");
+                        contadorMuestreo = contadorMuestreo + 1;
+                        break;
+                    } else if (contadorMuestreo == 2) {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Lleva " + contadorMuestreo + " de 3 intentos.");
+                        System.out.println("Al próximo error, se cancelará la función.\n");
+                        System.out.println("Introduzca un opción de la lista:");
+                        contadorMuestreo = contadorMuestreo + 1;
+                        break;
+                    } else {
+                        System.out.println("\n----------------------------------");
+                        System.out.println("     Esta opción no es válida");
+                        System.out.println("----------------------------------\n");
+                        System.out.println("Ha consumido las tres posibilidades de elección.");
+                        continuarMuestreo = false;
+                        System.out.println("\n---------------------------------------------");
+                        System.out.println("     No se ha podido realizar el listado");
+                        System.out.println("---------------------------------------------\n");
+                        break;
+                    }
+            }
         }
     }
 
@@ -1005,13 +1128,16 @@ public class Datos {
                 Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
                 if (excursion != null) {
                     // Mostrar fecha de la excursión y descripción
-                    System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaTransformada = formatoFecha.format(excursion.getFechaExcursion());
+
+                    System.out.println("Fecha de la excursión: " + fechaTransformada);
                     System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
 
                     ;
                     // Calcular e imprimir el importe con los cargos o descuentos aplicados
                     double importeTotal = calcularImporteTotal(excursion, socio);
-                    System.out.println("Importe total: " + importeTotal);
+                    System.out.println("Importe total: " + importeTotal + " euros.");
                 } else {
                     System.out.println("No se encontró información de la excursión para esta inscripción.");
                 }
@@ -1048,13 +1174,16 @@ public class Datos {
                 Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
                 if (excursion != null) {
                     // Mostrar fecha de la excursión y descripción
-                    System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaTransformada = formatoFecha.format(excursion.getFechaExcursion());
+
+                    System.out.println("Fecha de la excursión: " + fechaTransformada);
                     System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
 
                     ;
                     // Calcular e imprimir el importe con los cargos o descuentos aplicados
                     double importeTotal = calcularImporteTotal(excursion, socio);
-                    System.out.println("Importe total: " + importeTotal);
+                    System.out.println("Importe total: " + importeTotal + " euros.");
                 } else {
                     System.out.println("No se encontró información de la excursión para esta inscripción.");
                 }
@@ -1103,13 +1232,16 @@ public class Datos {
                     Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
                     if (excursion != null) {
                         // Mostrar fecha de la excursión y descripción
-                        System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                        String fechaTransformada = formatoFecha.format(excursion.getFechaExcursion());
+
+                        System.out.println("Fecha de la excursión: " + fechaTransformada);
                         System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
 
                         ;
                         // Calcular e imprimir el importe con los cargos o descuentos aplicados
                         double importeTotal = calcularImporteTotal(excursion, socio);
-                        System.out.println("Importe total: " + importeTotal);
+                        System.out.println("Importe total: " + importeTotal + " euros.");
                     } else {
                         System.out.println("No se encontró información de la excursión para esta inscripción.");
                     }
@@ -1163,13 +1295,16 @@ public class Datos {
                     Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
                     if (excursion != null) {
                         // Mostrar fecha de la excursión y descripción
-                        System.out.println("Fecha de la excursión: " + excursion.getFechaExcursion());
+                        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                        String fechaTransformada = formatoFecha.format(excursion.getFechaExcursion());
+
+                        System.out.println("Fecha de la excursión: " + fechaTransformada);
                         System.out.println("Descripción de la excursión: " + excursion.getDescripcion());
 
                         ;
                         // Calcular e imprimir el importe con los cargos o descuentos aplicados
                         double importeTotal = calcularImporteTotal(excursion, socio);
-                        System.out.println("Importe total: " + importeTotal);
+                        System.out.println("Importe total: " + importeTotal + " euros.");
                     } else {
                         System.out.println("No se encontró información de la excursión para esta inscripción.");
                     }
@@ -1231,5 +1366,4 @@ public class Datos {
 
         return precioInscripcion;
     }
-
 }

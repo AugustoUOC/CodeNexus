@@ -32,7 +32,7 @@ public class Main {
                     System.out.println("\n¿Qué le gustaría hacer?");
                     while (continuarExcursion) {
                         System.out.println("1. Añadir excursión");
-                        System.out.println("2. Mostrar escursiones");
+                        System.out.println("2. Mostrar excursiones");
                         System.out.println("0. Volver al menú principal");
                         int opcionExcursion = scanner.nextInt();
                         scanner.nextLine();

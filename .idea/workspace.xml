@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Clases en patrón MVC">
+    <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Test añadidos en la clase testDatos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test/modelo/DatosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test/modelo/DatosTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Datos.java" afterDir="false" />
@@ -53,6 +53,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.DatosTest.calcularImporteTotal.executor": "Run",
     "JUnit.DatosTest.mostrarFactura.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -62,7 +63,7 @@
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.DatosTest.mostrarFactura">
+  <component name="RunManager">
     <configuration name="DatosTest.calcularImporteTotal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CodeNexus" />
       <extension name="coverage">
@@ -126,11 +127,20 @@
       <option name="project" value="LOCAL" />
       <updated>1711046215748</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Test añadidos en la clase testDatos">
+      <option name="closed" value="true" />
+      <created>1712046382884</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712046382884</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clases en patrón MVC" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clases en patrón MVC" />
+    <MESSAGE value="Test añadidos en la clase testDatos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test añadidos en la clase testDatos" />
   </component>
 </project>

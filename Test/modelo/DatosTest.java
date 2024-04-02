@@ -30,7 +30,7 @@ class DatosTest {
 
     @Test
     void mostrarFactura() {
-        assert Datos.mostrarFactura(socioEstandar) == 48;
+        if (Datos.mostrarFactura(socioEstandar) != 48) throw new AssertionError();
     }
 
     @Test
