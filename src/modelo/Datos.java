@@ -267,7 +267,7 @@ public class Datos {
                         for (int i = 0; i < listaSocios.size(); i++) {
                             System.out.println((i + 1) + ". " + listaSocios.get(i).getNombre());
                         }
-                        System.out.print("Ingrese el número de socio que desea eliminar: ");
+
                         idTutor = scanner.nextInt();
                         if (idTutor < 1 || idTutor > listaSocios.size()) {
                             if (contadorBusqueda < 2) {
