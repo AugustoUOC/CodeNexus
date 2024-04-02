@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Calendar;
 
 public class Datos {
 
@@ -986,13 +987,17 @@ public class Datos {
         Date fechaActual = new Date(); //fecha actual
         boolean continuarEliminacion = true;
         int contadorFallos = 1;
-        System.out.println("Elige al ID de la Inscripcion que quieres eliminar:");
+        System.out.println("Elige el número de la Inscripcion que quieres eliminar:");
         while (continuarEliminacion) {
             int contadorExcursionesBorrables = 1;
             for(Inscripcion inscripcion : listaInscripciones) {
                 int idExcursion = inscripcion.getIdExcursion();
                 Excursion excursion = obtenerExcursionPorId(idExcursion, listaExcursiones);
-                if (fechaActual.before(excursion.getFechaExcursion())) {
+                Calendar calExcursion = Calendar.getInstance();
+                calExcursion.setTime(fechaActual);
+                calExcursion.add(Calendar.DAY_OF_YEAR, 1);
+                Date fechaSiguienteExcursion = calExcursion.getTime();
+                if (fechaSiguienteExcursion.before(excursion.getFechaExcursion() )) {
                     System.out.println("\n" + contadorExcursionesBorrables + ". " + inscripcion);
                     contadorExcursionesBorrables = contadorExcursionesBorrables + 1;
                 }
