@@ -26,7 +26,7 @@ public class Infantil extends Socio {
     // Método toString para imprimir los detalles del socio infantil
     @Override
     public String toString() {
-        return "Socio con id número: " + getIdSocio() + ", llamado: " +  getNombre() + ".\n" +
+        return "Socio Infantil con id número: " + getIdSocio() + ", llamado: " +  getNombre() + ".\n" +
                 "Tiene un tutor asociado con el id número " + idTutor +".";
 
     }

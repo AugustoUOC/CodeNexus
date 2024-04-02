@@ -7,6 +7,7 @@
     <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Actualización final previa a la grabación de video (producto2)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Datos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Estandar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Estandar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,8 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatosTest.mostrarFactura" />
         <item itemvalue="JUnit.DatosTest.calcularImporteTotal" />
+        <item itemvalue="JUnit.DatosTest.mostrarFactura" />
       </list>
     </recent_temporary>
   </component>
@@ -105,6 +106,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
+        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-51586f01" />
       </set>
     </attachedChunks>
   </component>

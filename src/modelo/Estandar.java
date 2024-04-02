@@ -46,7 +46,7 @@ public class Estandar extends Socio {
         if (seguroContratado.tipo) {
             tipoSeguro = "completo";
         }
-        return "Socio con id número: " +getIdSocio() + ", llamado: " +  getNombre() + ", con NIF: " + nif + ".\n" +
+        return "Socio Estandar con id número: " +getIdSocio() + ", llamado: " +  getNombre() + ", con NIF: " + nif + ".\n" +
                 "Tiene un seguro " +  tipoSeguro + " que vale " + seguroContratado.precio +" euros.";
     }
 }

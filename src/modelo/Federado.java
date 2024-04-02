@@ -39,7 +39,7 @@ public class Federado extends Socio {
     // Método toString para imprimir los detalles del socio federado
     @Override
     public String toString() {
-        return "Socio con id número: " +getIdSocio() + ", llamado: " +  getNombre() + ", con NIF: " + nif + ".\n" +
+        return "Socio Federado con id número: " +getIdSocio() + ", llamado: " +  getNombre() + ", con NIF: " + nif + ".\n" +
                 "Pertenece a la federación: " +  federacion.getNombre() + ".";
 
     }

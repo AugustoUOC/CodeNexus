@@ -73,10 +73,11 @@ public class Datos {
         boolean excursionesEncontradas = false;
         for (Excursion excursion : listaExcursiones) {
             Date fechaExcursion = excursion.getFechaExcursion();
-            if (fechaExcursion.after(fechaInicio) && fechaExcursion.before(fechaFin)) {
+            if ((fechaExcursion.after(fechaInicio) && fechaExcursion.before(fechaFin)) || (fechaExcursion.equals(fechaInicio) && fechaExcursion.before(fechaFin)) || (fechaExcursion.after(fechaInicio) && fechaExcursion.equals(fechaFin)))   {
                 System.out.println(excursion);
                 excursionesEncontradas = true;
             }
+
         }
         if (!excursionesEncontradas) {
             System.out.println("No se encontraron excursiones en el rango de fechas especificado.\n");
@@ -1220,13 +1221,14 @@ public class Datos {
                 return;
             }
 
-            System.out.println("Inscripciones entre " + dateFormat.format(fechaInicio) + " y " + dateFormat.format(fechaFin) + ":");
+            System.out.println("\n----------------------------------------------------");
+            System.out.println("     Inscripciones entre " + dateFormat.format(fechaInicio) + " y " + dateFormat.format(fechaFin) + ":");
+            System.out.println("----------------------------------------------------\n");
 
             boolean inscripcionesEncontradas = false;
             for (Inscripcion inscripcion : listaInscripciones) {
                 Date fechaInscripcion = inscripcion.getFechaInscripcion();
-                if (fechaInscripcion.after(fechaInicio) && fechaInscripcion.before(fechaFin)) {
-
+                if ((fechaInscripcion.after(fechaInicio) && fechaInscripcion.before(fechaFin)) || (fechaInscripcion.equals(fechaInicio) && fechaInscripcion.before(fechaFin)) || (fechaInscripcion.after(fechaInicio) && fechaInscripcion.equals(fechaFin)))  {
                     System.out.println("Número de socio: " + inscripcion.getIdSocio());
 
                     // Buscar el nombre del socio correspondiente
@@ -1258,9 +1260,9 @@ public class Datos {
                 }
             }
             if (!inscripcionesEncontradas) {
-                System.out.println("\n-------------------------------------------------------------------------------------");
-                System.out.println("     No hay inscripciones realizadas entre el día " + dateFormat.format(fechaInicio) + " y el día " + dateFormat.format(fechaFin));
-                System.out.println("-------------------------------------------------------------------------------------\n");
+
+                System.out.println(" No hay inscripciones realizadas entre el día " + dateFormat.format(fechaInicio) + " y el día " + dateFormat.format(fechaFin) + "\n");
+
                 return;
             }
 
@@ -1288,12 +1290,14 @@ public class Datos {
             return;
         }
 
-        System.out.println("Inscripciones del socio número: "+ idSocioInscripciones+", entre " + dateFormat.format(fechaInicio) + " y " + dateFormat.format(fechaFin) + ":");
+        System.out.println("\n----------------------------------------------------------------------------------------------");
+        System.out.println("     Inscripciones realizadas por el socio " + idSocioInscripciones + " entre el día " + dateFormat.format(fechaInicio) + " y el día " + dateFormat.format(fechaFin));
+        System.out.println("----------------------------------------------------------------------------------------------\n");
 
         boolean inscripcionesEncontradas = false;
         for (Inscripcion inscripcion : listaInscripciones) {
             Date fechaInscripcion = inscripcion.getFechaInscripcion();
-            if (fechaInscripcion.after(fechaInicio) && fechaInscripcion.before(fechaFin)) {
+            if ((fechaInscripcion.after(fechaInicio) && fechaInscripcion.before(fechaFin)) || (fechaInscripcion.equals(fechaInicio) && fechaInscripcion.before(fechaFin)) || (fechaInscripcion.after(fechaInicio) && fechaInscripcion.equals(fechaFin)))  {
                 if (idSocioInscripciones == inscripcion.getIdSocio()) {
                     System.out.println("Número de socio: " + inscripcion.getIdSocio());
 
@@ -1327,9 +1331,9 @@ public class Datos {
             }
         }
         if (!inscripcionesEncontradas) {
-            System.out.println("\n----------------------------------------------------------------------------------------------------");
-            System.out.println("     No hay inscripciones realizadas para el socio " + idSocioInscripciones + " entre el día " + dateFormat.format(fechaInicio) + " y el día " + dateFormat.format(fechaFin));
-            System.out.println("----------------------------------------------------------------------------------------------------\n");
+
+            System.out.println(" No hay inscripciones realizadas para el socio " + idSocioInscripciones + " entre el día " + dateFormat.format(fechaInicio) + " y el día " + dateFormat.format(fechaFin) + "\n");
+
         }
 
     }
