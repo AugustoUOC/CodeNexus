@@ -642,7 +642,7 @@ public class Datos {
         System.out.println("Ingrese el ID del socio para mostrar su factura:");
         while (continuarFactura) {
             int idSocio = scanner.nextInt();
-            if (idSocio == contadorSocios) {
+            if (idSocio <= contadorSocios) {
                 continuarFactura = false;
                 Socio socioFactura = obtenerSocioPorId(idSocio, listaSocios);
                 System.out.println("Id del Socio: " + socioFactura.getIdSocio());
@@ -680,13 +680,14 @@ public class Datos {
     }
     public static double mostrarFactura (Socio socio){
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
+        double coste = 0;
+        double costeExcursiones = 0;
         for (Inscripcion inscripcion : listaInscripciones) {
             if (inscripcion.getIdSocio() == socio.getIdSocio()) {
                 inscripciones.add(inscripcion);
             }
         }
-        double coste = 0;
-        double costeExcursiones = 0;
+
         for (Inscripcion inscripcion : inscripciones) {
             for (Excursion excursion : listaExcursiones) {
                 if (inscripcion.getIdExcursion() == excursion.getIdExcursion()) {
@@ -1045,7 +1046,7 @@ public class Datos {
         int contadorMuestreo = 1;
         boolean continuarMuestreoTipo = true;
         int contadorMuestreoTipo = 1;
-        System.out.println("Seleccione una opción:");
+        System.out.println("\nSeleccione una opción:");
         while (continuarMuestreo) {
             System.out.println("1. No aplicar filtros");
             System.out.println("2. Aplicar filtro por socio");
@@ -1057,15 +1058,19 @@ public class Datos {
 
             switch (opcion) {
                 case 1:
+                    continuarMuestreo = false;
                     mostrarTodasLasInscripciones(listaInscripciones, listaSocios, listaExcursiones);
                     break;
                 case 2:
+                    continuarMuestreo = false;
                     mostrarInscripcionPorSocio(listaInscripciones, listaSocios, listaExcursiones);
                     break;
                 case 3:
+                    continuarMuestreo = false;
                     mostrarInscripcionPorFecha(listaInscripciones, listaSocios, listaExcursiones);
                     break;
                 case 4:
+                    continuarMuestreo = false;
                     mostrarInscripcionPorSocioYFecha(listaInscripciones, listaSocios, listaExcursiones);
                     break;
                 case 0:
@@ -1109,21 +1114,23 @@ public class Datos {
 
     private static void mostrarTodasLasInscripciones(List<Inscripcion> listaInscripciones, List<Socio> listaSocios, List<Excursion> listaExcursiones) {
         if (listaInscripciones.isEmpty()) {
-            System.out.println("No hay inscripciones para mostrar.");
+            System.out.println("\n-----------------------------------------------------");
+            System.out.println("     No hay inscripciones agregadas para mostrar");
+            System.out.println("-----------------------------------------------------\n");
             return;
         } else {
             for (Inscripcion inscripcion : listaInscripciones) {
 
-                System.out.println("Número de socio: " + inscripcion.getIdSocio());
+                System.out.println("\nNúmero de socio: " + inscripcion.getIdSocio());
 
                 // Buscar el nombre del socio correspondiente
                 Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
                 if (socio != null) {
                     System.out.println("Nombre del socio: " + socio.getNombre());
                 } else {
-                    System.out.println("Nombre del socio: No encontrado");
+                    System.out.println("No se ha encontrado ningún socio asociado a esa ID");
+                    return;
                 }
-
                 // Buscar la excursión correspondiente a la inscripción
                 Excursion excursion = obtenerExcursionPorId(inscripcion.getIdExcursion(), listaExcursiones);
                 if (excursion != null) {
@@ -1155,19 +1162,19 @@ public class Datos {
         scanner.nextLine();
 
         if (listaInscripciones.isEmpty()) {
-            System.out.println("No hay inscripciones para mostrar.");
+            System.out.println("\n----------------------------------------------------");
+            System.out.println("     No hay inscripciones agregadas al socio " + idSocioInscripciones);
+            System.out.println("----------------------------------------------------\n");
             return;
         } else {
         for (Inscripcion inscripcion : listaInscripciones) {
             if (idSocioInscripciones == inscripcion.getIdSocio()) {
-                System.out.println("Número de socio: " + inscripcion.getIdSocio());
+                System.out.println("\nNúmero de socio: " + inscripcion.getIdSocio());
 
                 // Buscar el nombre del socio correspondiente
                 Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
                 if (socio != null) {
                     System.out.println("Nombre del socio: " + socio.getNombre());
-                } else {
-                    System.out.println("Nombre del socio: No encontrado");
                 }
 
                 // Buscar la excursión correspondiente a la inscripción
@@ -1207,7 +1214,9 @@ public class Datos {
             Date fechaFin = leerFecha(scanner, dateFormat);
 
             if (fechaInicio.after(fechaFin)) {
-                System.out.println("La fecha de inicio no puede ser posterior a la fecha de fin.");
+                System.out.println("\n--------------------------------------------------------------------");
+                System.out.println("     La fecha de inicio no puede ser posterior a la fecha final");
+                System.out.println("--------------------------------------------------------------------\n");
                 return;
             }
 
@@ -1249,7 +1258,10 @@ public class Datos {
                 }
             }
             if (!inscripcionesEncontradas) {
-                System.out.println("No se encontraron inscripciones en el rango de fechas especificado.");
+                System.out.println("\n-------------------------------------------------------------------------------------");
+                System.out.println("     No hay inscripciones realizadas entre el día " + dateFormat.format(fechaInicio) + " y el día " + dateFormat.format(fechaFin));
+                System.out.println("-------------------------------------------------------------------------------------\n");
+                return;
             }
 
     }
@@ -1270,7 +1282,9 @@ public class Datos {
         Date fechaFin = leerFecha(scanner, dateFormat);
 
         if (fechaInicio.after(fechaFin)) {
-            System.out.println("La fecha de inicio no puede ser posterior a la fecha de fin.");
+            System.out.println("\n--------------------------------------------------------------------");
+            System.out.println("     La fecha de inicio no puede ser posterior a la fecha final");
+            System.out.println("--------------------------------------------------------------------\n");
             return;
         }
 
@@ -1286,7 +1300,7 @@ public class Datos {
                     // Buscar el nombre del socio correspondiente
                     Socio socio = obtenerSocioPorId(inscripcion.getIdSocio(), listaSocios);
                     if (socio != null) {
-                        System.out.println("Nombre del socio: " + socio.getNombre());
+                        System.out.println("\nNombre del socio: " + socio.getNombre());
                     } else {
                         System.out.println("Nombre del socio: No encontrado");
                     }
@@ -1313,7 +1327,9 @@ public class Datos {
             }
         }
         if (!inscripcionesEncontradas) {
-            System.out.println("No se encontraron inscripciones en el rango de fechas especificado.");
+            System.out.println("\n----------------------------------------------------------------------------------------------------");
+            System.out.println("     No hay inscripciones realizadas para el socio " + idSocioInscripciones + " entre el día " + dateFormat.format(fechaInicio) + " y el día " + dateFormat.format(fechaFin));
+            System.out.println("----------------------------------------------------------------------------------------------------\n");
         }
 
     }
