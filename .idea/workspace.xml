@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d2ebd21d-624e-4f39-b276-ecf1275b7780" name="Changes" comment="Clases en patrón MVC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/modelo/DatosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test/modelo/DatosTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Datos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,17 +50,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Alejandro&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.DatosTest.mostrarFactura.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Alejandro",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Alejandro/Daw/Tercer_semestre/Programación orientada a objetos con acceso a BBDD/Producto2/CodeNexus",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
-}</component>
+}]]></component>
+  <component name="RunManager" selected="JUnit.DatosTest.mostrarFactura">
+    <configuration name="DatosTest.calcularImporteTotal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CodeNexus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="modelo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="modelo" />
+      <option name="MAIN_CLASS_NAME" value="modelo.DatosTest" />
+      <option name="METHOD_NAME" value="calcularImporteTotal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatosTest.mostrarFactura" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CodeNexus" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="modelo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="modelo" />
+      <option name="MAIN_CLASS_NAME" value="modelo.DatosTest" />
+      <option name="METHOD_NAME" value="mostrarFactura" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DatosTest.mostrarFactura" />
+        <item itemvalue="JUnit.DatosTest.calcularImporteTotal" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

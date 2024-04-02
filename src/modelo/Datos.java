@@ -620,7 +620,7 @@ public class Datos {
         }
     }
     //Funcion para mostrar el Importe total de la Factura segun el Socio y las excursiones que tiene asignadas
-    public static void mostrarFactura(List<Socio> listaSocios, List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
+    public static void mostrarFacturaTotal(List<Socio> listaSocios, List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el ID del socio para mostrar su factura:");
         int idSocio = scanner.nextInt();
@@ -630,25 +630,28 @@ public class Datos {
         } else {
             System.out.println("Id del Socio: " + socioFactura.getIdSocio());
             System.out.println("Nombre del Socio: " + socioFactura.getNombre());
-            ArrayList<Inscripcion> inscripciones = new ArrayList<>();
-            for (Inscripcion inscripcion : listaInscripciones) {
-                if (inscripcion.getIdSocio() == socioFactura.getIdSocio()) {
-                    inscripciones.add(inscripcion);
-                }
-            }
-            double coste = 0;
-            for (Inscripcion inscripcion : inscripciones) {
-                for (Excursion excursion : listaExcursiones) {
-                    if (inscripcion.getIdExcursion() == excursion.getIdExcursion()) {
-                        coste += calcularCosteExcursion(socioFactura, excursion);
-                    }
-                }
-            }
-            System.out.println("Factura mensual del socio numero: " + idSocio + ", es igual a: " + coste + " Euros.");
+            System.out.println("\nFactura mensual del socio numero: " + socioFactura.getIdSocio());
+            mostrarFactura(socioFactura);
+
         }
     }
-
-    //Creo que está mal la funcion de abajo, porque si tiene varias escursiones, suma varias veces la cuota de socio??
+    public static double mostrarFactura (Socio socio){
+        ArrayList<Inscripcion> inscripciones = new ArrayList<>();
+        for (Inscripcion inscripcion : listaInscripciones) {
+            if (inscripcion.getIdSocio() == socio.getIdSocio()) {
+                inscripciones.add(inscripcion);
+            }
+        }
+        double coste = 0;
+        for (Inscripcion inscripcion : inscripciones) {
+            for (Excursion excursion : listaExcursiones) {
+                if (inscripcion.getIdExcursion() == excursion.getIdExcursion()) {
+                    coste += calcularCosteExcursion(socio, excursion);
+                }
+            }
+        }
+        return coste;
+    }
     // Funcion para la logica de calcular la cuota + el coste de las inscripciones segun el Socio
     public static double calcularCosteExcursion(Socio socio, Excursion excursion) {
         double precio = 0;
@@ -887,7 +890,7 @@ public class Datos {
                         System.out.println("----------------------------------\n");
                         System.out.println("Lleva " + contadorFalloExcursion + " de 3 intentos.\n");
                         if (contadorExcursion == 1) {
-                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?\n");
+                            System.out.print("¿Quieres agregar una nueva excursión o volver al menu anterior?\n");
                         } else {
                             System.out.println("Elija una excursión de la lista o agrega una nueva:");
                         }
@@ -899,7 +902,7 @@ public class Datos {
                         System.out.println("Lleva " + contadorFalloExcursion + " de 3 intentos.");
                         System.out.println("Al próximo error, se anulará la eleción de excursión.\n");
                         if (contadorExcursion == 1) {
-                            System.out.print("Quieres agregar una nueva excursión o volver al menu anterior?\n");
+                            System.out.print("¿Quieres agregar una nueva excursión o volver al menu anterior?\n");
                         } else {
                             System.out.println("Elija una excursión de la lista o agrega una nueva:");
                         }
@@ -940,14 +943,16 @@ public class Datos {
     public static void mostrarInscripcionesBorrables(List<Excursion> listaExcursiones, List<Inscripcion> listaInscripciones) {
         Date fechaActual = new Date(); //fecha actual
         ArrayList<Inscripcion> listaInscripcionesBorrables = new ArrayList<Inscripcion>(); // nueva lista
+        int contadorExcursionesBorrables = 1;
         for(Inscripcion inscripcion : listaInscripciones) {
             int idExcursion = inscripcion.getIdExcursion();
             Excursion excursion = obtenerExcursionPorId(idExcursion, listaExcursiones);
             if (fechaActual.before(excursion.getFechaExcursion())) {
                 listaInscripcionesBorrables.add(inscripcion);
+                System.out.println(contadorExcursionesBorrables + ". " + inscripcion);
+                contadorExcursionesBorrables = contadorExcursionesBorrables + 1;
             }
         }
-        System.out.println(listaInscripcionesBorrables);
     }
 
     public static void mostrarInscripcion(List<Inscripcion> listaInscripciones, List<Socio> listaSocios,List<Excursion> listaExcursiones) {
@@ -1203,7 +1208,7 @@ public class Datos {
         return null; // Retorna null si no se encuentra el socio con el ID dado
     }
 
-    private static double calcularImporteTotal(Excursion excursion, Socio socio) {
+    public static double calcularImporteTotal(Excursion excursion, Socio socio) {
         double precioInscripcion = excursion.getPrecioInscripcion();
 
         // Aplicar descuento según el tipo de socio

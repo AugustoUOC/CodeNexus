@@ -165,7 +165,7 @@ public class Main {
                                     }
                                     break;
                                 case 5:
-                                    Datos.mostrarFactura(Datos.listaSocios, Datos.listaExcursiones, Datos.listaInscripciones);
+                                    Datos.mostrarFacturaTotal(Datos.listaSocios, Datos.listaExcursiones, Datos.listaInscripciones);
                                     System.out.println("¿Quieres realizar alguna otra gestión de las socios?");
                                     System.out.println("1. Si");
                                     System.out.println("2. No");
